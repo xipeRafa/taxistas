@@ -24,7 +24,15 @@ const ItemSelected = ({
     el.id === itemState.id && (seconds = el.createdAt.seconds);
   });
 
-  let date = new Date(seconds * 1000);
+
+  const hora = new Date(seconds*1000).toLocaleTimeString("es-CL")  /* hora, min, sec */
+
+  let date = new Date(seconds*1000).toLocaleDateString("es-CL", {
+        weekday: "long", // narrow, short
+        year: "numeric", // 2-digit
+        month: "short", // numeric, 2-digit, narrow, long
+        day: "numeric" // 2-digit
+   });
 
   return (
     <div className="m-5">
@@ -51,7 +59,7 @@ const ItemSelected = ({
             </h5>
           </div>
           <h5>
-            <span className="text-secondary">Fecha: </span> {date.toString()}
+            <span className="text-secondary">Fecha: </span> {date}, {' '}{hora}
           </h5>
           <h5 className="card-text">
             <span className="text-secondary">Comentarios: </span>{" "}

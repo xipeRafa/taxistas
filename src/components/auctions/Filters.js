@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React from 'react';
 import Select from "../filters/Select";
 import Range from "../filters/Range";
 import Categories from "../filters/Categories";

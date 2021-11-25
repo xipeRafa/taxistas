@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
 
 export const AuctionCard = ({ item, handleState}) => {
-  const { currentUser, bidAuction } = useContext(AuthContext);
+  const { currentUser} = useContext(AuthContext);
 
   const { docs } = useFirestore("auctions");
 
@@ -50,8 +50,7 @@ export const AuctionCard = ({ item, handleState}) => {
           <p className="card-text">{item.description.slice(0, 20)}...</p>
           <div className="d-flex justify-content-between align-item-center">
             {currentUser && (
-              <Button
-                onClick={() => bidAuction(item.id)}
+              <Button 
                 className={completed ? "btn btn-primary" : "btn btn-secondary"}
               >
                 {completed ? "Completado" : " Sin Completar"}
