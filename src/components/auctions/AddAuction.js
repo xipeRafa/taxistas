@@ -54,19 +54,15 @@ export const AddAuction = ({ setAuction }) => {
           + Guardar Viaje
         </div>
       </div>
-      <Modal centered show={showForm} onHide={closeForm} >
+      <Modal centered show={showForm} onHide={closeForm} style={{width: '96%', marginLeft: '1%'}} >
         <form onSubmit={submitForm} style={{backgroundColor:'rgb(222,222,222)'}}>
-          <Modal.Header>
-            <Modal.Title>Guardar Viaje</Modal.Title>
-          </Modal.Header>
           <Modal.Body>
             {error && <Alert variant="danger">{error}</Alert>}
             <Row>
-            <Col>
-                <Form.Group>
-                  <Form.Label>Taxista</Form.Label>
-                  <Form.Control type="text" value={currentUser.email} readOnly className='mb-3 disabled '/>
-                </Form.Group>
+            <Col className="border mb-5 btn bg-primary mx-2 p-2 text-center text-white">
+                
+                  {currentUser.email} 
+               
               </Col>
             </Row>
             <Row>
