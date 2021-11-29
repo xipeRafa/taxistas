@@ -23,7 +23,7 @@ const ItemSelected = ({
 
     el.id === itemState.id && (seconds = el.createdAt.seconds);
   });
-
+console.log(seconds)
 
   const hora = new Date(seconds*1000).toLocaleTimeString("es-CL")  /* hora, min, sec */
 
@@ -33,10 +33,15 @@ const ItemSelected = ({
         month: "short", // numeric, 2-digit, narrow, long
         day: "numeric" // 2-digit
    });
-
+console.log(itemState)
   return (
     <div className="m-5">
-      <div className="card p-5 pb-0">
+       <div className={itemState.completed ? 'bg-primary text-white p-2 text-center': 'bg-danger text-white p-2 text-center'} >
+          {itemState.completed ? 'COMPLETADO': 'SIN COMPLETAR'}
+        </div>
+      <div className="card pb-0">
+
+ 
         <div
           style={{
             height: "400px",
@@ -45,12 +50,12 @@ const ItemSelected = ({
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center"
           }}
-          className="w-100 mb-4"
+          className="w-100 mb-4 mt-2"
         />
 
         {title !== "Inicia sesión" && (
         <div className="card-body">
-          <p className="lead display-6">
+               <p className="lead display-6 pl-2">
             <span className="text-secondary">Taxi: </span> {itemState.title}
           </p>
           <div className="d-flex jsutify-content-between align-item-center">
@@ -73,6 +78,7 @@ const ItemSelected = ({
         </div>
          )}
       </div>
+     
     </div>
   );
 };

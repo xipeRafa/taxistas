@@ -9,16 +9,25 @@ export const AuctionCard = ({ item, handleState}) => {
   const { docs } = useFirestore("auctions");
 
   let payed = 0;
-  /*   let seconds */
+  let seconds 
   let completed;
 
   docs.map((el) => {
     el.id === item.id && (payed = el.curPrice);
-    /*   el.id === item.id && (seconds = el.createdAt.seconds.toString()); */
+     el.id === item.id && (seconds = el.duration);
     el.id === item.id && (completed = el.completed);
   });
 
-  /*   let date = new Date(seconds*1000); */
+
+const hora = new Date(seconds).toLocaleTimeString("es-CL")
+
+    let date = new Date(seconds).toLocaleDateString("es-CL", {
+      weekday: "short", // narrow, short
+      year: "numeric", // 2-digit
+      month: "short", // numeric, 2-digit, narrow, long
+      day: "numeric" // 2-digit
+ }); 
+    console.log(typeof date.toString())
 
   return (
     <div className="col">
@@ -45,13 +54,13 @@ export const AuctionCard = ({ item, handleState}) => {
             </h5>
           </div>
           <div>
-            <p>{/* date.slice(0, -38) */}</p>
+            <p>{date}, {hora.slice(0, -3)}</p>
           </div>
           <p className="card-text">{item.description.slice(0, 20)}...</p>
           <div className="d-flex justify-content-between align-item-center">
             {currentUser && (
               <Button 
-                className={completed ? "btn btn-primary" : "btn btn-secondary"}
+                className={completed ? "btn btn-primary" : "btn btn-secondary"} disabled
               >
                 {completed ? "Completado" : " Sin Completar"}
               </Button>
