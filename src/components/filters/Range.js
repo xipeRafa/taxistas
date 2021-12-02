@@ -39,7 +39,7 @@ const Range = () => {
 
   return (
     <div>
-      <div className="w-75">
+      <div className="w-75 mt-5">
         <h2>Resultados</h2>
 
         <select className="form-select w-100 " onChange={handleSelect} value={selectState}>

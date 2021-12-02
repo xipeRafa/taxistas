@@ -59,7 +59,7 @@ const Categories = () => {
                   
   return (
     <div>
-      <div className="w-75">
+      <div className="w-75 mt-5">
         <h2>Clientes</h2>
         <label>
           <input type="checkbox" className="m-1" value='oxxo' onChange={e=>handleoxxo(e)}  checked={oxxo}/>

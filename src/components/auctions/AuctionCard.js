@@ -14,20 +14,31 @@ export const AuctionCard = ({ item, handleState}) => {
 
   docs.map((el) => {
     el.id === item.id && (payed = el.curPrice);
-     el.id === item.id && (seconds = el.duration);
+    el.id === item.id && (seconds = el.duration);
     el.id === item.id && (completed = el.completed);
   });
 
 
 const hora = new Date(seconds).toLocaleTimeString("es-CL")
 
-    let date = new Date(seconds).toLocaleDateString("es-CL", {
+let date = new Date(seconds).toLocaleDateString("es-CL", {
       weekday: "short", // narrow, short
       year: "numeric", // 2-digit
       month: "short", // numeric, 2-digit, narrow, long
-      day: "numeric" // 2-digit
- }); 
-    console.log(typeof date.toString())
+      day: "numeric", // 2-digit
+   /*    hour: "numeric",
+      minute:"numeric" */
+}); 
+
+//segundos de un dia: 86400
+/* 
+let d = new Date(1636763478762)
+console.log('d:', d)
+console.log('getTime:', d.getTime())
+console.log('blala!!', new Date(1636700400000 + 86400*1000)) */
+
+
+
 
   return (
     <div className="col">

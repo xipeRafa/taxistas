@@ -23,7 +23,6 @@ const ItemSelected = ({
 
     el.id === itemState.id && (seconds = el.createdAt.seconds);
   });
-console.log(seconds)
 
   const hora = new Date(seconds*1000).toLocaleTimeString("es-CL")  /* hora, min, sec */
 
@@ -33,7 +32,7 @@ console.log(seconds)
         month: "short", // numeric, 2-digit, narrow, long
         day: "numeric" // 2-digit
    });
-console.log(itemState)
+
   return (
     <div className="m-5">
        <div className={itemState.completed ? 'bg-primary text-white p-2 text-center': 'bg-danger text-white p-2 text-center'} >

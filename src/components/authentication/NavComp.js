@@ -8,7 +8,7 @@ export const NavComp = () => {
   const { currentUser, logout } = useContext(AuthContext);
 
   return (
-    <nav className="container navbar navbar-light">
+    <nav className="container-fluid navbar navbar-light border">
       <div className="container-fluid">
         <div className="navbar-brand">
           <img src={logoImg} alt="logo" height="50" /> ADMINISTRACIÓN
