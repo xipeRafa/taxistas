@@ -11,44 +11,45 @@ const Categories = () => {
       let db = [...docs]
       
       const[oxxo, setoxxo]=useState(true); 
-      const[otro1, setotro1]=useState(true); 
-      const[otro2, setotro2]=useState(true); 
-
+      const[otro, setotro]=useState(true); 
+      const[pagoEnEfectivo, setPagoEnEfectivo]=useState(true); 
+    
       const handleoxxo =(e)=>{ 
             setoxxo(!oxxo) 
             oxxo  ? setArrFilter([...arrFilter, e.target.value]) 
                   : removeItemFromArr( arrFilter, e.target.value )
       }
-
-      const handleotro1 =(e)=>{ 
-            setotro1(!otro1) 
-            otro1  ? setArrFilter([...arrFilter, e.target.value]) 
+    
+      const handleotro =(e)=>{ 
+            setotro(!otro) 
+            otro ? setArrFilter([...arrFilter, e.target.value]) 
                   : removeItemFromArr( arrFilter, e.target.value )
       }
       
-      const handleotro2 =(e)=>{ 
-            setotro2(!otro2) 
-            otro2  ? setArrFilter([...arrFilter, e.target.value]) 
-                  : removeItemFromArr( arrFilter, e.target.value )
+      const handleEfectivo =(e)=>{ 
+            setPagoEnEfectivo(!pagoEnEfectivo) 
+            pagoEnEfectivo ? setArrFilter([...arrFilter, e.target.value]) 
+                           : removeItemFromArr( arrFilter, e.target.value )
       }
-
+    
       const[arrFilter, setArrFilter]=useState([])
- 
+    
       function removeItemFromArr( arrFilter, item ) {
             let index = arrFilter.indexOf( item );
             if(index>-1){ arrFilter.splice( index, 1 )} 
       }
-      /* console.log('Array-false:', arrFilter) */
-     
+       console.log('Array-false:', arrFilter) 
+    
+    
       useEffect(() => {
             for (let index = 0; index < arrFilter.length; index++) {
                   const element = db.filter(el => el.categorie !== arrFilter[index]);
                   db = element
-                 /*  console.log('for:', db)  */
+                   console.log('for:', db)  
             } 
-               handleDB(db)
+            handleDB(db)
       
-      }, [arrFilter, oxxo, otro1, otro2])
+      }, [arrFilter, oxxo, otro, pagoEnEfectivo]) 
     
       useEffect(() => {
              setTimeout(() => {
@@ -61,19 +62,20 @@ const Categories = () => {
     <div>
       <div className="w-75 mt-5">
         <h2>Clientes</h2>
-        <label>
+        <label >
           <input type="checkbox" className="m-1" value='oxxo' onChange={e=>handleoxxo(e)}  checked={oxxo}/>
           oxxo 
         </label>
         <br />
         <label>
-          <input type="checkbox" className="m-1" value='otro1' onChange={e=>handleotro1(e)} checked={otro1}/>
-          otro1 
-        </label>
+          <input type="checkbox" className="m-1" value='otro' onChange={e=>handleotro(e)} checked={otro}/>
+          otro
+        </label >
         <br />
-        <label>
-          <input type="checkbox" className="m-1" value='otro2' onChange={e=>handleotro2(e)} checked={otro2}/>
-          otro2 
+        <label >
+          <input type="checkbox" className="m-1" value='pago en efectivo' 
+                 onChange={e=>handleEfectivo(e)} checked={pagoEnEfectivo}/>
+          Pago en Efectivo
         </label>
       </div>
     </div>

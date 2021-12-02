@@ -40,6 +40,7 @@ console.log('blala!!', new Date(1636700400000 + 86400*1000)) */
 
   return (
     <div className="col">
+        {currentUser && (
       <div className="card shadow-sm">
         <div
           onClick={() => handleState(item)}
@@ -52,7 +53,7 @@ console.log('blala!!', new Date(1636700400000 + 86400*1000)) */
           }}
           className="w-100 mt-4"
         />
-
+       
         <div className="card-body p-4">
           <p className="h5">
             <span className="text-secondary">KL </span> {item.title}
@@ -65,16 +66,18 @@ console.log('blala!!', new Date(1636700400000 + 86400*1000)) */
           <div>
             <p>{date}, {hora.slice(0, -3)}</p>
           </div>
-          <p className="card-text">{item.description.slice(0, 20)}...</p>
+          <p className="card-text">{item?.description?.slice(0, 20)}...</p>
           <div className="d-flex justify-content-between align-item-center">
-            {currentUser && (
+           
               <Button className={completed ? "btn btn-primary w-100" : "btn btn-danger w-100"}>
                 {completed ? "Completado" : " Sin Completar"}
               </Button>
-            )}
+          
           </div>
         </div>
+      
       </div>
+        )}
     </div>
   );
 };

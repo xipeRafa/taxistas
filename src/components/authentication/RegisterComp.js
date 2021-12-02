@@ -26,7 +26,7 @@ export const RegisterComp = () => {
     }
 
     try {
-      await register(/* nameRef.current.value, */ emailRef.current.value, passwordRef.current.value);
+      await register(emailRef.current.value, passwordRef.current.value);
       closeForm();
     } catch (error) {
       setError(error.message);
@@ -35,9 +35,9 @@ export const RegisterComp = () => {
 
   return (
     <>
-      {/* <div onClick={openForm} className="btn btn-outline-secondary mx-2">
+   {/*    <div onClick={openForm} className="btn btn-outline-secondary mx-2">
         Registro
-      </div> */}
+      </div>  */}
       <Modal centered show={showForm} onHide={closeForm}>
         <form onSubmit={submitForm}>
           <Modal.Header>

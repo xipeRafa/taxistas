@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Alert } from "react-bootstrap";
 import { AuthContext } from "../../context/AuthContext";
 import { AuctionCard } from "./AuctionCard";
@@ -11,6 +11,7 @@ import Filters from "./Filters";
 
 import "./picker.css";
 import es from "date-fns/locale/es";
+import Categories from "../filters/Categories";
 registerLocale("es", es);
 
 export const AuctionBody = () => {
@@ -27,8 +28,14 @@ export const AuctionBody = () => {
   let admin = currentUser ? currentUser.email : false;
 
   let DBD;
-  if (admin === "superadmin@gmail.com") {
-    DBD = DB.sort((o1, o2) => o1.completed === o2.completed ? 0 : o2.completed? -1 : 1);
+  if (
+    admin === "superadmin@gmail.com" ||
+    "superadmin2@gmail.com" ||
+    "superadmin3@gmail.com"
+  ) {
+    DBD = DB.sort((o1, o2) =>
+      o1.completed === o2.completed ? 0 : o2.completed ? -1 : 1
+    );
   } else {
     DBD = [];
   }
@@ -40,7 +47,7 @@ export const AuctionBody = () => {
 
   const [today2, setToday2] = useState();
 
-  const [fecha, setFecha] = useState();
+  const [fecha, setFecha] = useState(Date.now());
   console.log(fecha);
   const [arr, setArr] = useState([]);
   console.log(arr);
@@ -58,8 +65,6 @@ export const AuctionBody = () => {
       year: "numeric", // 2-digit
       month: "short", // numeric, 2-digit, narrow, long
       day: "numeric" // 2-digit
-      /*    hour: "numeric",
-  minute:"numeric"  */
     });
 
     setToday2(today2);
@@ -128,19 +133,75 @@ export const AuctionBody = () => {
   };
   /* ===================================== Radio Filter END ==================== */
 
+  /* ===================================== Clientes Filter ==================== */
+
+  let db = n
+    ?.sort((o1, o2) => o1.duration - o2.duration) //last to near
+    .sort((o1, o2) =>
+      o1.completed === o2.completed ? 0 : o2.completed ? -1 : 1
+    );
+
+  const [oxxo, setoxxo] = useState(true);
+  const [otro, setotro] = useState(true);
+  const [pagoEnEfectivo, setPagoEnEfectivo] = useState(true);
+
+  const handleoxxo = (e) => {
+    setoxxo(!oxxo);
+    oxxo
+      ? setArrFilter([...arrFilter, e.target.value])
+      : removeItemFromArr(arrFilter, e.target.value);
+  };
+
+  const handleotro = (e) => {
+    setotro(!otro);
+    otro
+      ? setArrFilter([...arrFilter, e.target.value])
+      : removeItemFromArr(arrFilter, e.target.value);
+  };
+
+  const handleEfectivo = (e) => {
+    setPagoEnEfectivo(!pagoEnEfectivo);
+    pagoEnEfectivo
+      ? setArrFilter([...arrFilter, e.target.value])
+      : removeItemFromArr(arrFilter, e.target.value);
+  };
+
+  const [arrFilter, setArrFilter] = useState([]);
+
+  function removeItemFromArr(arrFilter, item) {
+    let index = arrFilter.indexOf(item);
+    if (index > -1) {
+      arrFilter.splice(index, 1);
+    }
+  }
+  console.log("Array-false:", arrFilter);
+
+  useEffect(() => {
+    for (let index = 0; index < arrFilter.length; index++) {
+      const element = db.filter((el) => el.categorie !== arrFilter[index]);
+      db = element;
+      console.log("for:", db);
+    }
+    setArrRadio(db);
+  }, [arrFilter, oxxo, otro, pagoEnEfectivo]);
+
+  /* ===================================== Clientes Filter END ==================== */
+
   let arr3 = arr;
+
   if (n) {
-    let nn = n.filter((el) => el !== false)
-
-    arr3 = nn
-
+    let nn = n.filter((el) => el !== false);
+    arr3 = nn;
     if (arrRadio.length > 0) {
       arr3 = arrRadio;
     }
   } else {
     if (arr) {
-      arr3 = arr.sort((o1, o2) => o1.duration - o2.duration)//last to near
-                .sort((o1, o2) => o1.completed === o2.completed ? 0 : o2.completed? -1 : 1)
+      arr3 = arr
+        .sort((o1, o2) => o1.duration - o2.duration) //last to near
+        .sort((o1, o2) =>
+          o1.completed === o2.completed ? 0 : o2.completed ? -1 : 1
+        );
     }
   }
 
@@ -160,23 +221,37 @@ export const AuctionBody = () => {
       >
         {globalMsg && <Alert variant="danger">{globalMsg}</Alert>}
       </div>
-
+      {admin && (
       <div className="row bg-secondary pt-4 pb-3">
-          <div className="text-white bg-primary mb-3" style={{marginLeft:'50px!important'}}>
-             {l} viajes el dia: <br/> { today2}
-          </div> 
+        <div className="text-white bg-primary mb-3 p-1">
+          <span style={{ marginLeft: "20px" }}>
+            <span className="p-1">{l}</span> viajes el dia: {today2}
+          </span>
+          <span
+            style={{ marginLeft: "50px" }}
+            className={n?.length > 0 ? "" : "d-none"}
+          >
+            <span className="bg-danger p-1">
+              {n?.filter((el) => el.completed === false).length}
+            </span>{" "}
+            viajes Sin Completar de {mail + "@gmail.com"} de {n?.length} en
+            Total
+          </span>
+        </div>
         <div className="col-1"></div>
-        <div className="col-3  text-center mb-4">
+        <div className={n?.length > 0 ? "d-none" : "col-3 text-center mb-4"}>
           <DatePicker
             selected={fecha}
             onChange={onChange}
             onFocus={dateFocus}
             locale="es"
-            className="pickers mb-3 form-control mt-2 w-100 "
+            className="pickers mb-3 form-control mt-2 w-100 bg-secondary"
             dateFormat="dd 'de' MMMM 'de' yyyy"
           />
         </div>
-        <div className="col-1"></div>
+        <div className={n?.length > 0 ? "col-1 fs-2 row-back" : "d-none"}
+             onClick={() => location.reload()}>🔙</div>
+
         <div className="col-3 text-center">
           <form onSubmit={handleSubmit}>
             <input
@@ -185,7 +260,7 @@ export const AuctionBody = () => {
               value={mail}
               className={arr.length > 0 ? "w-100 form-control mt-2" : "d-none"}
               style={{ width: "0" }}
-              placeholder="filtrar por correo"
+              placeholder="Filtrar por Correo"
             />
           </form>
         </div>
@@ -197,7 +272,7 @@ export const AuctionBody = () => {
           >
             <input
               type="button"
-              className="btn text-white btn-secondary"
+              className="text-white btn btn-secondary"
               name="drone"
               value="Todos"
               onClick={() => setArrRadio([])}
@@ -224,13 +299,51 @@ export const AuctionBody = () => {
             </label>
           </div>
         </div>
-      </div>
+        <div className={n?.length > 0 ? "col-3" : "d-none"}>
+          <div className="w-75 mt-0">
+            <label className="text-white mb-3">
+              <input
+                type="checkbox"
+                className="m-1"
+                value="oxxo"
+                onChange={(e) => handleoxxo(e)}
+                checked={oxxo}
+              />
+              OXXO
+            </label>
+            <br />
+            <label className="text-white mb-3">
+              <input
+                type="checkbox"
+                className="m-1"
+                value="otro"
+                onChange={(e) => handleotro(e)}
+                checked={otro}
+              />
+              Otro
+            </label>
+            <br />
+            <label className="text-white">
+              <input
+                type="checkbox"
+                className="m-1"
+                value="pago en efectivo"
+                onChange={(e) => handleEfectivo(e)}
+                checked={pagoEnEfectivo}
+              />
+              Pagos en Efectivo
+            </label>
+          </div>
+        </div>
+      </div>)}
 
       {DB && (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
-          <div className={arr.length > 0 && "d-none"}>
-            <Filters />
-          </div>
+          {currentUser && (
+            <div className={arr.length > 0 && "d-none"}>
+              <Filters />
+            </div>
+          )}
           {arr4
             .filter((el) => el !== undefined)
             .map((doc) => {

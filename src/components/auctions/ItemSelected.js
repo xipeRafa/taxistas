@@ -16,29 +16,34 @@ const ItemSelected = ({
   let seconds;
 
   docs.map((el) => {
-
     el.id === itemState.id && (email = el.email);
 
     el.id === itemState.id && (seconds = el.createdAt.seconds);
   });
 
-  const hora = new Date(seconds*1000).toLocaleTimeString("es-CL")  /* hora, min, sec */
+  const hora = new Date(seconds * 1000).toLocaleTimeString(
+    "es-CL"
+  ); /* hora, min, sec */
 
-  let date = new Date(seconds*1000).toLocaleDateString("es-CL", {
-        weekday: "long", // narrow, short
-        year: "numeric", // 2-digit
-        month: "short", // numeric, 2-digit, narrow, long
-        day: "numeric" // 2-digit
-   });
+  let date = new Date(seconds * 1000).toLocaleDateString("es-CL", {
+    weekday: "long", // narrow, short
+    year: "numeric", // 2-digit
+    month: "short", // numeric, 2-digit, narrow, long
+    day: "numeric" // 2-digit
+  });
 
   return (
     <div className="m-5">
-       <div className={itemState.completed ? 'bg-primary text-white p-2 text-center': 'bg-danger text-white p-2 text-center'} >
-          {itemState.completed ? 'COMPLETADO': 'SIN COMPLETAR'}
-        </div>
+      <div
+        className={
+          itemState.completed
+            ? "bg-primary text-white p-2 text-center"
+            : "bg-danger text-white p-2 text-center"
+        }
+      >
+        {itemState.completed ? "COMPLETADO" : "SIN COMPLETAR"}
+      </div>
       <div className="card pb-0">
-
- 
         <div
           style={{
             height: "400px",
@@ -51,26 +56,34 @@ const ItemSelected = ({
         />
 
         {title !== "Inicia sesión" && (
-        <div className="card-body">
-               <p className="lead display-6 pl-2">
-            <span className="text-secondary">Taxi: </span> {itemState.title}
-          </p>
-          <div className="d-flex jsutify-content-between align-item-center">
+          <div className="card-body">
+            <p className="lead display-6 pl-2">
+              <span className="text-secondary">KL: </span> {itemState.title}
+            </p>
+            <div className="d-flex jsutify-content-between align-item-center">
+              <h5>
+                <span className="text-secondary">KL: </span> {email}
+              </h5>
+            </div>
             <h5>
-              <span className="text-secondary">Correo: </span> {email}
+              <span className="text-secondary">Fecha: </span> {date}, {hora}
+            </h5>
+            <h5 className="card-text">
+              <span className="text-secondary">Comentarios: </span>{" "}
+              {itemState.description}
             </h5>
           </div>
-          <h5>
-            <span className="text-secondary">Fecha: </span> {date}, {' '}{hora}
-          </h5>
-          <h5 className="card-text">
-            <span className="text-secondary">Comentarios: </span>{" "}
-            {itemState.description}
-          </h5>
-        </div>
-         )}
+        )}
       </div>
-     
+      <div
+        className={
+          itemState.completed
+            ? "bg-primary text-white p-2 text-center"
+            : "bg-danger text-white p-2 text-center"
+        }
+      >
+        {itemState.completed ? "COMPLETADO" : "SIN COMPLETAR"}
+      </div>
     </div>
   );
 };
