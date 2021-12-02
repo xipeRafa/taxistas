@@ -8,8 +8,6 @@ export const AddAuction = ({ setAuction }) => {
 
   const itemTitle = useRef();
   const itemDesc = useRef();
-  const startPrice = useRef();
- /*  const itemDuration = useRef(); */
   const itemImage = useRef();
   const itemCategorie = useRef();
 
@@ -30,14 +28,13 @@ export const AddAuction = ({ setAuction }) => {
 
     let currentDate = new Date();
     let dueDate = currentDate.setHours(
-      currentDate.getHours() /* + itemDuration.current.value */
+      currentDate.getHours() 
     );
 
     let newAuction = {
       email: currentUser.email,
       title: itemTitle.current.value,
       description: itemDesc.current.value,
-      curPrice: startPrice.current.value,
       duration: dueDate,
       itemImage: itemImage.current.files[0],
       categorie: itemCategorie.current.value,
@@ -83,26 +80,11 @@ export const AddAuction = ({ setAuction }) => {
                 <Form.Control as="Select" multiple={false} ref={itemCategorie}>
                   <option>Selecciona un Cliente</option>
                   <option value="oxxo">OXXO</option>
-                  <option value="otro1">otro 1</option>
-                  <option value="otro2">otro2</option>
+                  <option value="otro1">Otro</option>
+                  <option value="otro2">Pago en Efectivo</option>
                 </Form.Control >
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <Form.Group>
-                  <Form.Label>Precio</Form.Label>
-                  <Form.Control type="number" required ref={startPrice} />
-                </Form.Group>
-              </Col>
-             {/*   <Col>
-                <Form.Group>
-                  <Form.Label>Item Duration in hours</Form.Label>
-                  <Form.Control type="number" required ref={itemDuration} />
-                </Form.Group>
-              </Col>  */}
-            </Row>
-
             <Row>
             <Col>
                 <Form.Group>

@@ -12,12 +12,10 @@ const ItemSelected = ({
 
   let title = itemState.title;
 
-  let payed = 0;
   let email = "";
   let seconds;
 
   docs.map((el) => {
-    el.id === itemState.id && (payed = el.curPrice);
 
     el.id === itemState.id && (email = el.email);
 
@@ -69,11 +67,6 @@ const ItemSelected = ({
             <span className="text-secondary">Comentarios: </span>{" "}
             {itemState.description}
           </h5>
-          <div style={{float:'right'}}>
-            
-              <p className="display-6 ">${payed}</p>
-           
-          </div>
         </div>
          )}
       </div>

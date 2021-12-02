@@ -28,7 +28,7 @@ export const AuctionBody = () => {
 
   let DBD;
   if (admin === "superadmin@gmail.com") {
-    DBD = DB;
+    DBD = DB.sort((o1, o2) => o1.completed === o2.completed ? 0 : o2.completed? -1 : 1);
   } else {
     DBD = [];
   }
@@ -38,8 +38,10 @@ export const AuctionBody = () => {
     setArr([]);
   };
 
-  const [fecha, setFecha] = useState();
+  const [today2, setToday2] = useState();
 
+  const [fecha, setFecha] = useState();
+  console.log(fecha);
   const [arr, setArr] = useState([]);
   console.log(arr);
 
@@ -47,10 +49,20 @@ export const AuctionBody = () => {
 
   const onChange = (fecha) => {
     setFecha(fecha);
-    console.log(fecha);
 
     let today = fecha?.getTime();
     let tomorrow = today + 86400000;
+
+    let today2 = new Date(today).toLocaleDateString("es-CL", {
+      weekday: "long", // narrow, short
+      year: "numeric", // 2-digit
+      month: "short", // numeric, 2-digit, narrow, long
+      day: "numeric" // 2-digit
+      /*    hour: "numeric",
+  minute:"numeric"  */
+    });
+
+    setToday2(today2);
 
     let ss = DB;
 
@@ -102,7 +114,7 @@ export const AuctionBody = () => {
 
   const handlerRadio = (v) => {
     setRadio(v);
-    setArrRadio([])
+    setArrRadio([]);
     const toRadio = n?.filter((el) => el !== false);
     let r = toRadio;
 
@@ -118,15 +130,17 @@ export const AuctionBody = () => {
 
   let arr3 = arr;
   if (n) {
-    let nn = n.filter((el) => el !== false);
-    arr3 = nn;
+    let nn = n.filter((el) => el !== false)
+
+    arr3 = nn
 
     if (arrRadio.length > 0) {
       arr3 = arrRadio;
     }
   } else {
     if (arr) {
-      arr3 = arr;
+      arr3 = arr.sort((o1, o2) => o1.duration - o2.duration)//last to near
+                .sort((o1, o2) => o1.completed === o2.completed ? 0 : o2.completed? -1 : 1)
     }
   }
 
@@ -147,11 +161,10 @@ export const AuctionBody = () => {
         {globalMsg && <Alert variant="danger">{globalMsg}</Alert>}
       </div>
 
-
-      <div className="row bg-secondary pt-4 pb-3 style={{paddingLeft:'50px'}}">
-         <label className="pl-5 "> 
-          <span className="text-white bg-primary p-1 "> { l}</span> {''}viajes el dia:
-         </label>  
+      <div className="row bg-secondary pt-4 pb-3">
+          <div className="text-white bg-primary mb-3" style={{marginLeft:'50px!important'}}>
+             {l} viajes el dia: <br/> { today2}
+          </div> 
         <div className="col-1"></div>
         <div className="col-3  text-center mb-4">
           <DatePicker
@@ -182,13 +195,13 @@ export const AuctionBody = () => {
             className={n?.length > 0 ? "w-50" : "d-none"}
             onChange={(e) => handlerRadio(e.target.value)}
           >
-              <input
-                type="button"
-                className="btn text-white btn-secondary"
-                name="drone"
-                value='Todos'
-                onClick={()=>setArrRadio([])}
-              />
+            <input
+              type="button"
+              className="btn text-white btn-secondary"
+              name="drone"
+              value="Todos"
+              onClick={() => setArrRadio([])}
+            />
 
             <label className="btn text-white btn-secondary">
               <input

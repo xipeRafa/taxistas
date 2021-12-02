@@ -8,12 +8,10 @@ export const AuctionCard = ({ item, handleState}) => {
 
   const { docs } = useFirestore("auctions");
 
-  let payed = 0;
   let seconds 
   let completed;
 
   docs.map((el) => {
-    el.id === item.id && (payed = el.curPrice);
     el.id === item.id && (seconds = el.duration);
     el.id === item.id && (completed = el.completed);
   });
@@ -57,7 +55,7 @@ console.log('blala!!', new Date(1636700400000 + 86400*1000)) */
 
         <div className="card-body p-4">
           <p className="h5">
-            <span className="text-secondary">taxi </span> {item.title}
+            <span className="text-secondary">KL </span> {item.title}
           </p>
           <div className="d-flex jsutify-content-between align-item-center">
             <h5>
@@ -70,14 +68,10 @@ console.log('blala!!', new Date(1636700400000 + 86400*1000)) */
           <p className="card-text">{item.description.slice(0, 20)}...</p>
           <div className="d-flex justify-content-between align-item-center">
             {currentUser && (
-              <Button 
-                className={completed ? "btn btn-primary" : "btn btn-secondary"} disabled
-              >
+              <Button className={completed ? "btn btn-primary w-100" : "btn btn-danger w-100"}>
                 {completed ? "Completado" : " Sin Completar"}
               </Button>
             )}
-
-            <p className="display-6">${payed}</p>
           </div>
         </div>
       </div>
