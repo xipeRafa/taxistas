@@ -16,7 +16,7 @@ const Select = () => {
   };
 
   useEffect(() => {
-      if(selectState[0]==='Price'){
+    /*   if(selectState[0]==='Price'){
             let price = db.sort((o1, o2) => o1.curPrice - o2.curPrice)
             handleDB(price)
             return
@@ -25,7 +25,7 @@ const Select = () => {
             let price = db.sort((o1, o2) => o2.curPrice - o1.curPrice)
             handleDB(price)
             return
-      }
+      } */
       if(selectState[0]==='DateMaxToMin'){
             let Date = db.sort((o1, o2) => o2.createdAt - o1.createdAt)
             handleDB(Date)
@@ -50,14 +50,14 @@ const Select = () => {
           <option>
            Filtrar por
           </option>
-          <option value="Price">
+         {/*  <option value="Price">
             Precio
           </option>
           <option value="PriceMaxToMin">
             Precio Max to Min
-          </option>
+          </option> */}
           <option value="Date">
-            Fecha
+            Fecha MIN to MAX
           </option>
           <option value="DateMaxToMin">
             Fecha Max to Min
