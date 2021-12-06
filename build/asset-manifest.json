@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/taxistas/static/css/main.645dae1b.chunk.css",
-    "main.js": "/taxistas/static/js/main.d834bbc5.chunk.js",
-    "main.js.map": "/taxistas/static/js/main.d834bbc5.chunk.js.map",
+    "main.js": "/taxistas/static/js/main.29d186ae.chunk.js",
+    "main.js.map": "/taxistas/static/js/main.29d186ae.chunk.js.map",
     "runtime-main.js": "/taxistas/static/js/runtime-main.29112eea.js",
     "runtime-main.js.map": "/taxistas/static/js/runtime-main.29112eea.js.map",
     "static/css/2.f97446a8.chunk.css": "/taxistas/static/css/2.f97446a8.chunk.css",
@@ -19,6 +19,6 @@
     "static/css/2.f97446a8.chunk.css",
     "static/js/2.11a7fc93.chunk.js",
     "static/css/main.645dae1b.chunk.css",
-    "static/js/main.d834bbc5.chunk.js"
+    "static/js/main.29d186ae.chunk.js"
   ]
 }
