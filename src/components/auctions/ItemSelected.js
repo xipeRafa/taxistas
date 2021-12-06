@@ -57,14 +57,15 @@ const ItemSelected = ({
 
         {title !== "Inicia sesión" && (
           <div className="card-body">
-            <p className="lead display-6 pl-2">
+          {/*   <p className="lead display-6 pl-2">
               <span className="text-secondary">KL: </span> {itemState.title}
-            </p>
-            <div className="d-flex jsutify-content-between align-item-center">
+            </p> */}
               <h5>
-                <span className="text-secondary">KL: </span> {email}
+                <span className="text-secondary">KL: </span> {email.slice(0, -10)}
               </h5>
-            </div>
+              <h5>
+              <span className="text-secondary">Unidad: </span> {itemState.title}
+              </h5>
             <h5>
               <span className="text-secondary">Fecha: </span> {date}, {hora}
             </h5>

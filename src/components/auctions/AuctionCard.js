@@ -37,7 +37,6 @@ console.log('blala!!', new Date(1636700400000 + 86400*1000)) */
 
 
 
-
   return (
     <div className="col">
         {currentUser && (
@@ -56,7 +55,7 @@ console.log('blala!!', new Date(1636700400000 + 86400*1000)) */
        
         <div className="card-body p-4">
           <p className="h5">
-            <span className="text-secondary">KL </span> {item.title}
+            <span className="text-secondary">KL </span> {item.email?.slice(0, -10)}
           </p>
           <div className="d-flex jsutify-content-between align-item-center">
             <h5>

@@ -11,7 +11,7 @@ import Filters from "./Filters";
 
 import "./picker.css";
 import es from "date-fns/locale/es";
-import Categories from "../filters/Categories";
+
 registerLocale("es", es);
 
 export const AuctionBody = () => {
@@ -47,18 +47,21 @@ export const AuctionBody = () => {
 
   const [today2, setToday2] = useState();
 
-  const [fecha, setFecha] = useState(Date.now());
+  const [fecha, setFecha] = useState();
   console.log(fecha);
   const [arr, setArr] = useState([]);
   console.log(arr);
 
   let l = arr.filter((el) => el).length;
 
-  const onChange = (fecha) => {
+  const onDate = (fecha) => {
     setFecha(fecha);
 
     let today = fecha?.getTime();
     let tomorrow = today + 86400000;
+
+    console.log(today)
+    console.log(tomorrow)
 
     let today2 = new Date(today).toLocaleDateString("es-CL", {
       weekday: "long", // narrow, short
@@ -193,7 +196,7 @@ export const AuctionBody = () => {
     let nn = n.filter((el) => el !== false);
     arr3 = nn;
     if (arrRadio.length > 0) {
-      arr3 = arrRadio;
+      arr3 = arrRadio.filter((el) => el !== false);;
     }
   } else {
     if (arr) {
@@ -234,15 +237,14 @@ export const AuctionBody = () => {
             <span className="bg-danger p-1">
               {n?.filter((el) => el.completed === false).length}
             </span>{" "}
-            viajes Sin Completar de {mail + "@gmail.com"} de {n?.length} en
-            Total
+            viajes Sin Completar de {mail} 
           </span>
         </div>
         <div className="col-1"></div>
         <div className={n?.length > 0 ? "d-none" : "col-3 text-center mb-4"}>
           <DatePicker
             selected={fecha}
-            onChange={onChange}
+            onChange={onDate}
             onFocus={dateFocus}
             locale="es"
             className="pickers mb-3 form-control mt-2 w-100 bg-secondary"
