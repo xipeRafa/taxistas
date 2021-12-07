@@ -185,20 +185,42 @@ export const AuctionBody = () => {
   let lastHour = Date.now() - 3600000;
   let lastMinute = Date.now() - 60000;
 
+ 
   const[min, setMin]=useState()
-  console.log(min)
-  
-  const handlerMinute =()=>{
+
+  const[f, setF]=useState(1)
+
+  const handlerInputM = (e)=>{
+    setF(e.target.value)
+  }
+
+  let r = 60000 * f
+
+  useEffect(() => {
     const t2 = DBD.filter((el) => el !== undefined)
     .filter((el) => el.completed === false)
-    .filter((el) => el.duration > lastMinute)
+    .filter((el) => el.duration > lastMinute - r)
 
     let personasMap2 = t2.map(item=>{ return [item.email, item] })
     let personasMapArr2 = new Map(personasMap2)
 
       let unicos2 = [...personasMapArr2.values()]
       setMin(unicos2)
-   
+  }, [f])
+
+
+  const handlerMinute =()=>{
+    const t2 = DBD.filter((el) => el !== undefined)
+    .filter((el) => el.completed === false)
+    .filter((el) => el.duration > lastMinute - r)
+
+    let personasMap2 = t2.map(item=>{ return [item.email, item] })
+    let personasMapArr2 = new Map(personasMap2)
+
+      let unicos2 = [...personasMapArr2.values()]
+      setMin(unicos2)
+      setD([])
+      setH([])
   }
 
   const[d, setD]=useState()
@@ -214,12 +236,33 @@ export const AuctionBody = () => {
    
    let unicos = [...personasMapArr.values()]; // Conversión a un array
    setD(unicos)
-   
- 
+   setMin([])
+   setH([])
   }
 
+  
+
   const [h, setH]=useState()
-  console.log(h)
+
+  const[hr, setHr]=useState(1)
+console.log(hr)
+  const handlerInputH = (e)=>{
+    setHr(e.target.value)
+  }
+
+  let rr = 3600000 * hr
+
+  useEffect(() => {
+    const t1 = DBD.filter((el) => el !== undefined)
+    .filter((el) => el.completed === false)
+    .filter((el) => el.duration > lastHour - rr)
+
+   let personasMap1 = t1.map(item=>{ return [item.email, item] })
+   let personasMapArr1 = new Map(personasMap1); // Pares de clave y valor
+   
+   let unicos1 = [...personasMapArr1.values()]; // Conversión a un array
+   setH(unicos1)
+  }, [hr])
   
   const handlerHour =()=>{
     const t1 = DBD.filter((el) => el !== undefined)
@@ -231,7 +274,8 @@ export const AuctionBody = () => {
    
    let unicos1 = [...personasMapArr1.values()]; // Conversión a un array
    setH(unicos1)
-
+   setMin([])
+   setD([])
   }
 
 
@@ -292,7 +336,7 @@ export const AuctionBody = () => {
         <div className="row bg-secondary pt-4 pb-3">
           <div className="text-white bg-primary mb-3 p-1">
             <span style={{ marginLeft: "20px" }}>
-              <span className="p-1">{l}</span> viajes el dia: {today2}
+              <span className="p-1">{l}</span> viajes el dia: {today2} de todos los Taxistas
             </span>
             <span
               style={{ marginLeft: "50px" }}
@@ -427,9 +471,11 @@ export const AuctionBody = () => {
                 value='Ultimas 24 Horas' onClick={handlerDay}/>
       </div>
 
-      <div className={arr?.length > 0 ? "d-none" : min?.length > 0 ? 'bg-secondary p-1 mb-3':  "d-none"}>
-        <h4 className='p-1'>
-          Taxistas con viajes sin Completar de el Ultimo Minuto
+
+      <div className={arr?.length > 0 ? "d-none" : min?.length > 0 ? 'p-1 mb-3':  "d-none"}>
+        <h4 className='p-1 bg-secondary text-white'>
+          Taxistas con Viajes sin Completar desde el Ultimo Minuto +
+          <input type="number" className="mx-5" onChange={handlerInputM} value={f}/>
         </h4>
 
         {
@@ -446,10 +492,12 @@ export const AuctionBody = () => {
       </div>
 
 
-      <div className={arr?.length > 0 ? "d-none" : h?.length > 0 ? 'bg-secondary p-1 mb-3':  "d-none"}>
-        <h4 className='p-1'>
-          Taxistas con viajes sin Completar de las Ultima Hora
+      <div className={arr?.length > 0 ? "d-none" : h?.length > 0 ? 'p-1 mb-3':  "d-none"}>
+        <h4 className='p-1 bg-secondary text-white'>
+          Taxistas con Viajes sin Completar de la Ultima Hora +
+          <input type="number" className="mx-5" onChange={handlerInputH} value={hr}/>
         </h4>
+        
 
         {
           <div className="p-3 text-center mb-3">
@@ -468,8 +516,8 @@ export const AuctionBody = () => {
       </div>
 
 
-      <div className={arr?.length > 0 ? "d-none" : d?.length > 0 ? 'bg-secondary p-1 mb-3':  "d-none"}>
-        <h4 className='p-1'>
+      <div className={arr?.length > 0 ? "d-none" : d?.length > 0 ? 'p-1 mb-3':  "d-none"}>
+        <h4 className='p-1 bg-secondary text-white'>
           Taxistas con viajes sin Completar de las Ultimas 24 Horas
         </h4>
 
