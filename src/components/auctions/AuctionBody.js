@@ -536,6 +536,9 @@ console.log(hr)
         }
         
       </div>
+      <div className={arr?.length > 0 ? "d-none" : 'p-1 mb-3 mt-5'}>
+        <input type="text" value='Codigo de Taller:' className='form-control w-25'/>
+      </div>
 
       {DB && (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
