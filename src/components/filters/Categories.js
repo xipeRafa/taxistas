@@ -38,14 +38,12 @@ const Categories = () => {
             let index = arrFilter.indexOf( item );
             if(index>-1){ arrFilter.splice( index, 1 )} 
       }
-       console.log('Array-false:', arrFilter) 
     
     
       useEffect(() => {
             for (let index = 0; index < arrFilter.length; index++) {
                   const element = db.filter(el => el.categorie !== arrFilter[index]);
                   db = element
-                   console.log('for:', db)  
             } 
             handleDB(db)
       

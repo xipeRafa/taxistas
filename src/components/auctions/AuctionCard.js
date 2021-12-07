@@ -24,16 +24,8 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
       year: "numeric", // 2-digit
       month: "short", // numeric, 2-digit, narrow, long
       day: "numeric", // 2-digit
-   /*    hour: "numeric",
-      minute:"numeric" */
 }); 
 
-//segundos de un dia: 86400
-/* 
-let d = new Date(1636763478762)
-console.log('d:', d)
-console.log('getTime:', d.getTime())
-console.log('blala!!', new Date(1636700400000 + 86400*1000)) */
 
 
 

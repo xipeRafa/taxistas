@@ -48,9 +48,7 @@ export const AuctionBody = () => {
   const [today2, setToday2] = useState();
 
   const [fecha, setFecha] = useState();
-  console.log(fecha);
   const [arr, setArr] = useState([]);
-  console.log(arr);
 
   let l = arr.filter((el) => el).length;
 
@@ -59,9 +57,6 @@ export const AuctionBody = () => {
 
     let today = fecha?.getTime();
     let tomorrow = today + 86400000;
-
-    console.log(today)
-    console.log(tomorrow)
 
     let today2 = new Date(today).toLocaleDateString("es-CL", {
       weekday: "long", // narrow, short
@@ -87,7 +82,6 @@ export const AuctionBody = () => {
   /* ===================================== filter Mail ==================== */
 
   const [mail, setMail] = useState();
-  console.log(mail);
 
   const handleMail = (e) => {
     setMail(e.target.value);
@@ -97,7 +91,6 @@ export const AuctionBody = () => {
   const [arr2, setArr2] = useState([]);
 
   const [n, setN] = useState();
-  console.log(n);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -115,10 +108,8 @@ export const AuctionBody = () => {
 
   /* ===================================== Radio Filter ==================== */
   const [radio, setRadio] = useState();
-  console.log(radio);
 
   const [arrRadio, setArrRadio] = useState([]);
-  console.log(arrRadio);
 
   const handlerRadio = (v) => {
     setRadio(v);
@@ -177,18 +168,86 @@ export const AuctionBody = () => {
       arrFilter.splice(index, 1);
     }
   }
-  console.log("Array-false:", arrFilter);
 
   useEffect(() => {
     for (let index = 0; index < arrFilter.length; index++) {
       const element = db.filter((el) => el.categorie !== arrFilter[index]);
       db = element;
-      console.log("for:", db);
     }
     setArrRadio(db);
   }, [arrFilter, oxxo, otro, pagoEnEfectivo]);
 
   /* ===================================== Clientes Filter END ==================== */
+
+  /* ===================================== last 24 hours ==================== */
+  /* let lastWeek  = Date.now()-86400000 * 7 */
+  let lastDay = Date.now() - 86400000;
+  let lastHour = Date.now() - 3600000;
+  let lastMinute = Date.now() - 60000;
+
+  const[min, setMin]=useState()
+  console.log(min)
+  
+  const handlerMinute =()=>{
+    const t2 = DBD.filter((el) => el !== undefined)
+    .filter((el) => el.completed === false)
+    .filter((el) => el.duration > lastMinute)
+
+    let personasMap2 = t2.map(item=>{ return [item.email, item] })
+    let personasMapArr2 = new Map(personasMap2)
+
+      let unicos2 = [...personasMapArr2.values()]
+      setMin(unicos2)
+   
+  }
+
+  const[d, setD]=useState()
+  console.log(d)
+
+  const handlerDay =()=>{
+    const tt = DBD.filter((el) => el !== undefined)
+    .filter((el) => el.completed === false)
+    .filter((el) => el.duration > lastDay)
+
+   let personasMap = tt.map(item=>{ return [item.email, item] })
+   let personasMapArr = new Map(personasMap); // Pares de clave y valor
+   
+   let unicos = [...personasMapArr.values()]; // Conversión a un array
+   setD(unicos)
+   
+ 
+  }
+
+  const [h, setH]=useState()
+  console.log(h)
+  
+  const handlerHour =()=>{
+    const t1 = DBD.filter((el) => el !== undefined)
+    .filter((el) => el.completed === false)
+    .filter((el) => el.duration > lastHour)
+
+   let personasMap1 = t1.map(item=>{ return [item.email, item] })
+   let personasMapArr1 = new Map(personasMap1); // Pares de clave y valor
+   
+   let unicos1 = [...personasMapArr1.values()]; // Conversión a un array
+   setH(unicos1)
+
+  }
+
+
+
+ 
+                    
+
+
+                      
+
+  /* ===================================== last 24 hours END ==================== */
+
+
+
+
+
 
   let arr3 = arr;
 
@@ -196,7 +255,7 @@ export const AuctionBody = () => {
     let nn = n.filter((el) => el !== false);
     arr3 = nn;
     if (arrRadio.length > 0) {
-      arr3 = arrRadio.filter((el) => el !== false);;
+      arr3 = arrRadio.filter((el) => el !== false);
     }
   } else {
     if (arr) {
@@ -214,6 +273,11 @@ export const AuctionBody = () => {
     arr4 = arr3;
   }
 
+
+
+
+
+
   return (
     <div className="container-fluid">
       {auction && <ProgressBar auction={auction} setAuction={setAuction} />}
@@ -225,119 +289,205 @@ export const AuctionBody = () => {
         {globalMsg && <Alert variant="danger">{globalMsg}</Alert>}
       </div>
       {admin && (
-      <div className="row bg-secondary pt-4 pb-3">
-        <div className="text-white bg-primary mb-3 p-1">
-          <span style={{ marginLeft: "20px" }}>
-            <span className="p-1">{l}</span> viajes el dia: {today2}
-          </span>
-          <span
-            style={{ marginLeft: "50px" }}
-            className={n?.length > 0 ? "" : "d-none"}
-          >
-            <span className="bg-danger p-1">
-              {n?.filter((el) => el.completed === false).length}
-            </span>{" "}
-            viajes Sin Completar de {mail} 
-          </span>
-        </div>
-        <div className="col-1"></div>
-        <div className={n?.length > 0 ? "d-none" : "col-3 text-center mb-4"}>
-          <DatePicker
-            selected={fecha}
-            onChange={onDate}
-            onFocus={dateFocus}
-            locale="es"
-            className="pickers mb-3 form-control mt-2 w-100 bg-secondary"
-            dateFormat="dd 'de' MMMM 'de' yyyy"
-          />
-        </div>
-        <div className={n?.length > 0 ? "col-1 fs-2 row-back" : "d-none"}
-             onClick={() => location.reload()}>🔙</div>
-
-        <div className="col-3 text-center">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              onChange={handleMail}
-              value={mail}
-              className={arr.length > 0 ? "w-100 form-control mt-2" : "d-none"}
-              style={{ width: "0" }}
-              placeholder="Filtrar por Correo"
+        <div className="row bg-secondary pt-4 pb-3">
+          <div className="text-white bg-primary mb-3 p-1">
+            <span style={{ marginLeft: "20px" }}>
+              <span className="p-1">{l}</span> viajes el dia: {today2}
+            </span>
+            <span
+              style={{ marginLeft: "50px" }}
+              className={n?.length > 0 ? "" : "d-none"}
+            >
+              <span className="bg-danger p-1">
+                {n?.filter((el) => el.completed === false).length}
+              </span>{" "}
+              viajes Sin Completar de {mail}
+            </span>
+          </div>
+          <div className="col-1"></div>
+          <div className={n?.length > 0 ? "d-none" : "col-3 text-center mb-4 me-5"}>
+            <DatePicker
+              selected={fecha}
+              onChange={onDate}
+              onFocus={dateFocus}
+              locale="es"
+              className="pickers mb-3 form-control mt-2 w-100 bg-secondary"
+              dateFormat="dd 'de' MMMM 'de' yyyy"
             />
-          </form>
-        </div>
-        <div className="col-1"></div>
-        <div className={arr?.length > 0 ? "col-3 mt-0 fr" : "d-none"}>
+          </div>
           <div
-            className={n?.length > 0 ? "w-50" : "d-none"}
-            onChange={(e) => handlerRadio(e.target.value)}
+            className={arr?.length > 0 ? "col-1 fs-2 row-back" : "d-none"}
+            onClick={() => location.reload()}
           >
-            <input
-              type="button"
-              className="text-white btn btn-secondary"
-              name="drone"
-              value="Todos"
-              onClick={() => setArrRadio([])}
-            />
+            🔙
+          </div>
 
-            <label className="btn text-white btn-secondary">
+          <div className="col-3 text-center">
+            <form onSubmit={handleSubmit}>
               <input
-                type="radio"
-                value="completados"
-                name="drone"
-                className="d-none"
+                type="text"
+                onChange={handleMail}
+                value={mail}
+                className={
+                  arr.length > 0 ? "w-100 form-control mt-2" : "d-none"
+                }
+                style={{ width: "0" }}
+                placeholder="Filtrar por Correo"
               />
-              Completados
-            </label>
-            <label className="btn text-white btn-secondary">
+            </form>
+          </div>
+          <div className="col-1"></div>
+          <div className={arr?.length > 0 ? "col-3 mt-0 fr" : "d-none"}>
+            <div
+              className={n?.length > 0 ? "w-50" : "d-none"}
+              onChange={(e) => handlerRadio(e.target.value)}
+            >
               <input
-                type="radio"
-                value="nocompletados"
+                type="button"
+                className="text-white btn btn-secondary"
                 name="drone"
-                className="d-none"
-                for="chackbox2"
+                value="Todos"
+                onClick={() => setArrRadio([])}
               />
-              No Completados
-            </label>
+
+              <label className="btn text-white btn-secondary">
+                <input
+                  type="radio"
+                  value="completados"
+                  name="drone"
+                  className="d-none"
+                />
+                Completados
+              </label>
+              <label className="btn text-white btn-secondary">
+                <input
+                  type="radio"
+                  value="nocompletados"
+                  name="drone"
+                  className="d-none"
+                  for="chackbox2"
+                />
+                No Completados
+              </label>
+            </div>
+          </div>
+          <div className={n?.length > 0 ? "col-3" : "d-none"}>
+            <div className="w-75 mt-0">
+              <label className="text-white mb-3">
+                <input
+                  type="checkbox"
+                  className="m-1"
+                  value="oxxo"
+                  onChange={(e) => handleoxxo(e)}
+                  checked={oxxo}
+                />
+                OXXO
+              </label>
+              <br />
+              <label className="text-white mb-3">
+                <input
+                  type="checkbox"
+                  className="m-1"
+                  value="otro"
+                  onChange={(e) => handleotro(e)}
+                  checked={otro}
+                />
+                Otro
+              </label>
+              <br />
+              <label className="text-white">
+                <input
+                  type="checkbox"
+                  className="m-1"
+                  value="pago en efectivo"
+                  onChange={(e) => handleEfectivo(e)}
+                  checked={pagoEnEfectivo}
+                />
+                Pagos en Efectivo
+              </label>
+            </div>
           </div>
         </div>
-        <div className={n?.length > 0 ? "col-3" : "d-none"}>
-          <div className="w-75 mt-0">
-            <label className="text-white mb-3">
-              <input
-                type="checkbox"
-                className="m-1"
-                value="oxxo"
-                onChange={(e) => handleoxxo(e)}
-                checked={oxxo}
-              />
-              OXXO
-            </label>
-            <br />
-            <label className="text-white mb-3">
-              <input
-                type="checkbox"
-                className="m-1"
-                value="otro"
-                onChange={(e) => handleotro(e)}
-                checked={otro}
-              />
-              Otro
-            </label>
-            <br />
-            <label className="text-white">
-              <input
-                type="checkbox"
-                className="m-1"
-                value="pago en efectivo"
-                onChange={(e) => handleEfectivo(e)}
-                checked={pagoEnEfectivo}
-              />
-              Pagos en Efectivo
-            </label>
+      )}
+
+{/* =================================================================================================================================================================================================================================== */}
+      <div 
+      className="d-flex flex-row justify-content-evenly p-4"> 
+
+        <input type="button" 
+                className={arr?.length > 0 ? "d-none" : "btn btn-primary"} 
+                value='Ultimo Minuto' onClick={handlerMinute}/>
+
+        <input type="button" 
+                className={arr?.length > 0 ? "d-none" : "btn btn-primary"} 
+                value='Ultima Hora' onClick={handlerHour}/>
+
+        <input type="button" 
+                className={arr?.length > 0 ? "d-none" : "btn btn-primary"} 
+                value='Ultimas 24 Horas' onClick={handlerDay}/>
+      </div>
+
+      <div className={arr?.length > 0 ? "d-none" : min?.length > 0 ? 'bg-secondary p-1 mb-3':  "d-none"}>
+        <h4 className='p-1'>
+          Taxistas con viajes sin Completar de el Ultimo Minuto
+        </h4>
+
+        {
+          <div className="p-3 text-center mb-3">
+            {min?.map((doc) => {
+                return (
+                  <span className="border border-danger mx-2 p-2 bg-white">
+                    {doc.email.slice(0, -10)}
+                  </span>
+                );
+              })}
           </div>
-        </div>
-      </div>)}
+        }
+      </div>
+
+
+      <div className={arr?.length > 0 ? "d-none" : h?.length > 0 ? 'bg-secondary p-1 mb-3':  "d-none"}>
+        <h4 className='p-1'>
+          Taxistas con viajes sin Completar de las Ultima Hora
+        </h4>
+
+        {
+          <div className="p-3 text-center mb-3">
+            {
+                h?.map((doc) => {
+                  return(
+                    <span className="border border-danger mx-2 p-2 bg-white">
+                      {doc.email.slice(0, -10)}
+                    </span>
+                  )
+                }) 
+            }
+          </div>
+        }
+        
+      </div>
+
+
+      <div className={arr?.length > 0 ? "d-none" : d?.length > 0 ? 'bg-secondary p-1 mb-3':  "d-none"}>
+        <h4 className='p-1'>
+          Taxistas con viajes sin Completar de las Ultimas 24 Horas
+        </h4>
+
+        {
+          <div className="p-3 text-center mb-3">
+            {
+                d?.map((doc) => {
+                  return(
+                    <span className="border border-danger mx-2 p-2 bg-white">
+                      {doc.email.slice(0, -10)}
+                    </span>
+                  )
+                }) 
+            }
+          </div>
+        }
+        
+      </div>
 
       {DB && (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">

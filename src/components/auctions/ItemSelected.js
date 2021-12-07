@@ -18,14 +18,14 @@ const ItemSelected = ({
   docs.map((el) => {
     el.id === itemState.id && (email = el.email);
 
-    el.id === itemState.id && (seconds = el.createdAt.seconds);
+    el.id === itemState.id && (seconds = el.duration);
   });
 
-  const hora = new Date(seconds * 1000).toLocaleTimeString(
+  const hora = new Date(seconds).toLocaleTimeString(
     "es-CL"
   ); /* hora, min, sec */
 
-  let date = new Date(seconds * 1000).toLocaleDateString("es-CL", {
+  let date = new Date(seconds).toLocaleDateString("es-CL", {
     weekday: "long", // narrow, short
     year: "numeric", // 2-digit
     month: "short", // numeric, 2-digit, narrow, long

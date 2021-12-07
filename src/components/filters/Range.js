@@ -34,7 +34,6 @@ const Range = () => {
       }
   }, [selectState])
 
-  /* console.log("selectState:", selectState); */
  
 
   return (

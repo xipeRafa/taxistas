@@ -12,8 +12,6 @@ export const FilterProvider = ({ children }) => {
     setDB(db)
   }
 
- /*  console.log('DB:', DB) */
-
   return (
     <FilterContext.Provider value={{handleDB, DB}}>
       {children}
