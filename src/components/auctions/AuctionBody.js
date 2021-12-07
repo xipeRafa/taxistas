@@ -455,6 +455,7 @@ console.log(hr)
       )}
 
 {/* =================================================================================================================================================================================================================================== */}
+{currentUser && (
       <div 
       className="d-flex flex-row justify-content-evenly p-4"> 
 
@@ -470,7 +471,7 @@ console.log(hr)
                 className={arr?.length > 0 ? "d-none" : "btn btn-primary"} 
                 value='Ultimas 24 Horas' onClick={handlerDay}/>
       </div>
-
+)}
 
       <div className={arr?.length > 0 ? "d-none" : min?.length > 0 ? 'p-1 mb-3':  "d-none"}>
         <h4 className='p-1 bg-secondary text-white'>
@@ -536,9 +537,11 @@ console.log(hr)
         }
         
       </div>
-      <div className={arr?.length > 0 ? "d-none" : 'p-1 mb-3 mt-5'}>
-        <input type="text" value='Codigo de Taller:' className='form-control w-25'/>
-      </div>
+      {currentUser && (
+        <div className={arr?.length > 0 ? "d-none" : 'p-1 mb-3 mt-5'}>
+          <input type="text" placeholder='Codigo de Taller:' className='form-control w-25'/>
+        </div>
+      )}
 
       {DB && (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
