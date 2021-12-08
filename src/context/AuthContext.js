@@ -45,14 +45,14 @@ export const AuthProvider = ({ children }) => {
     return db.doc(auctionId).delete();
   };
 
-  useEffect(() => {
+   useEffect(() => {
     const subscribe = authApp.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
     });
 
     return subscribe;
-  }, []);
+  }, []); 
 
   useEffect(() => {
     const interval = setTimeout(() => setGlobalMsg(''), 5000);

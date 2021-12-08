@@ -179,103 +179,97 @@ export const AuctionBody = () => {
 
   /* ===================================== Clientes Filter END ==================== */
 
+
   /* ===================================== last 24 hours ==================== */
-  /* let lastWeek  = Date.now()-86400000 * 7 */
+ /*  let lastWeek  = Date.now()-86400000 * 7  */
   let lastDay = Date.now() - 86400000;
   let lastHour = Date.now() - 3600000;
   let lastMinute = Date.now() - 60000;
 
- 
-  const[min, setMin]=useState()
+  const [min, setMin] = useState();
 
-  const[f, setF]=useState(1)
+  const [f, setF] = useState(1);
 
-  const handlerInputM = (e)=>{
-    setF(e.target.value)
-  }
+  const handlerInputM = (e) => {
+    setF(e.target.value);
+  };
 
-  let r = 60000 * f
+  let r = 60000 * f;
 
-  useEffect(() => {
-    const t2 = DBD.filter((el) => el !== undefined)
-    .filter((el) => el.completed === false)
-    .filter((el) => el.duration > lastMinute - r)
-
-    let personasMap2 = t2.map(item=>{ return [item.email, item] })
-    let personasMapArr2 = new Map(personasMap2)
-
-      let unicos2 = [...personasMapArr2.values()]
-      setMin(unicos2)
-  }, [f])
-
-
-  const handlerMinute =()=>{
-    const t2 = DBD.filter((el) => el !== undefined)
-    .filter((el) => el.completed === false)
-    .filter((el) => el.duration > lastMinute - r)
-
-    let personasMap2 = t2.map(item=>{ return [item.email, item] })
-    let personasMapArr2 = new Map(personasMap2)
-
-      let unicos2 = [...personasMapArr2.values()]
-      setMin(unicos2)
-      setD([])
-      setH([])
-  }
-
-  const[d, setD]=useState()
-
-  const handlerDay =()=>{
-    const tt = DBD.filter((el) => el !== undefined)
-    .filter((el) => el.completed === false)
-    .filter((el) => el.duration > lastDay)
-
-   let personasMap = tt.map(item=>{ return [item.email, item] })
-   let personasMapArr = new Map(personasMap); // Pares de clave y valor
-   
-   let unicos = [...personasMapArr.values()]; // Conversión a un array
-   setD(unicos)
-   setMin([])
-   setH([])
-  }
-
-  
-
-  const [h, setH]=useState()
-
-  const[hr, setHr]=useState(1)
-
-  const handlerInputH = (e)=>{
-    setHr(e.target.value)
-  }
-
-  let rr = 3600000 * hr
+  const t2 = DBD.filter((el) => el !== undefined).filter((el) => el.completed === false)
 
   useEffect(() => {
-    const t1 = DBD.filter((el) => el !== undefined)
-    .filter((el) => el.completed === false)
-    .filter((el) => el.duration > lastHour - rr)
 
-   let personasMap1 = t1.map(item=>{ return [item.email, item] })
-   let personasMapArr1 = new Map(personasMap1); // Pares de clave y valor
-   
-   let unicos1 = [...personasMapArr1.values()]; // Conversión a un array
-   setH(unicos1)
-  }, [hr])
-  
-  const handlerHour =()=>{
-    const t1 = DBD.filter((el) => el !== undefined)
-    .filter((el) => el.completed === false)
-    .filter((el) => el.duration > lastHour)
+    let personasMap2 = t2.filter((el) => el.duration > lastMinute - r).map((item) => {
+      return [item.email, item];
+    });
+    let personasMapArr2 = new Map(personasMap2);
 
-   let personasMap1 = t1.map(item=>{ return [item.email, item] })
-   let personasMapArr1 = new Map(personasMap1); // Pares de clave y valor
-   
-   let unicos1 = [...personasMapArr1.values()]; // Conversión a un array
-   setH(unicos1)
-   setMin([])
-   setD([])
-  }
+    let unicos2 = [...personasMapArr2.values()];
+    setMin(unicos2);
+  }, [f]);
+
+  const handlerMinute = () => {
+
+    let personasMap2 = t2.filter((el) => el.duration > lastMinute - r).map((item) => {
+      return [item.email, item];
+    });
+    let personasMapArr2 = new Map(personasMap2);
+
+    let unicos2 = [...personasMapArr2.values()];
+    setMin(unicos2);
+    setD([]);
+    setH([]);
+  };
+
+  const [d, setD] = useState();
+
+  const handlerDay = () => {
+
+    let personasMap = t2.filter((el) => el.duration > lastDay).map((item) => {
+      return [item.email, item];
+    });
+    let personasMapArr = new Map(personasMap); // Pares de clave y valor
+
+    let unicos = [...personasMapArr.values()]; // Conversión a un array
+    setD(unicos);
+    setMin([]);
+    setH([]);
+  };
+
+  const [h, setH] = useState();
+
+  const [hr, setHr] = useState(1);
+
+  const handlerInputH = (e) => {
+    setHr(e.target.value);
+  };
+
+  let rr = 3600000 * hr;
+
+  useEffect(() => {
+
+    let personasMap1 = t2.filter((el) => el.duration > lastHour - rr).map((item) => {
+      return [item.email, item];
+    });
+    let personasMapArr1 = new Map(personasMap1); // Pares de clave y valor
+
+    let unicos1 = [...personasMapArr1.values()]; // Conversión a un array
+    setH(unicos1);
+  }, [hr]);
+
+  const handlerHour = () => {
+
+    let personasMap1 = t2.filter((el) => el.duration > lastHour).map((item) => {
+      return [item.email, item];
+    });
+    let personasMapArr1 = new Map(personasMap1); // Pares de clave y valor
+
+    let unicos1 = [...personasMapArr1.values()]; // Conversión a un array
+    setH(unicos1);
+    setMin([]);
+    setD([]);
+  };
 
   /* ===================================== last 24 hours END ==================== */
 
@@ -303,9 +297,6 @@ export const AuctionBody = () => {
     arr4 = arr3;
   }
 
-
-
-
   return (
     <div className="container-fluid">
       {auction && <ProgressBar auction={auction} setAuction={setAuction} />}
@@ -320,7 +311,8 @@ export const AuctionBody = () => {
         <div className="row bg-secondary pt-4 pb-3">
           <div className="text-white bg-primary mb-3 p-1">
             <span style={{ marginLeft: "20px" }}>
-              <span className="p-1">{l}</span> viajes el dia: {today2} de todos los Taxistas
+              <span className="p-1">{l}</span> viajes el dia: {today2} de todos
+              los Taxistas
             </span>
             <span
               style={{ marginLeft: "50px" }}
@@ -333,7 +325,9 @@ export const AuctionBody = () => {
             </span>
           </div>
           <div className="col-1"></div>
-          <div className={n?.length > 0 ? "d-none" : "col-3 text-center mb-4 me-5"}>
+          <div
+            className={n?.length > 0 ? "d-none" : "col-3 text-center mb-4 me-5"}
+          >
             <DatePicker
               selected={fecha}
               onChange={onDate}
@@ -437,92 +431,115 @@ export const AuctionBody = () => {
         </div>
       )}
 
-{/* =================================================================================================================================================================================================================================== */}
-{currentUser && (
-      <div 
-      className="d-flex flex-row justify-content-evenly p-4"> 
+      {/* =================================================================================================================================================================================================================================== */}
 
-        <input type="button" 
-                className={arr?.length > 0 ? "d-none" : "btn btn-primary"} 
-                value='Ultimo Minuto' onClick={handlerMinute}/>
+      <div className="d-flex flex-row justify-content-evenly p-4">
+        <input
+          type="button"
+          className={arr?.length > 0 ? "d-none" : "btn btn-primary"}
+          value="Ultimo Minuto"
+          onClick={handlerMinute}
+        />
 
-        <input type="button" 
-                className={arr?.length > 0 ? "d-none" : "btn btn-primary"} 
-                value='Ultima Hora' onClick={handlerHour}/>
+        <input
+          type="button"
+          className={arr?.length > 0 ? "d-none" : "btn btn-primary"}
+          value="Ultima Hora"
+          onClick={handlerHour}
+        />
 
-        <input type="button" 
-                className={arr?.length > 0 ? "d-none" : "btn btn-primary"} 
-                value='Ultimas 24 Horas' onClick={handlerDay}/>
+        <input
+          type="button"
+          className={arr?.length > 0 ? "d-none" : "btn btn-primary"}
+          value="Ultimas 24 Horas"
+          onClick={handlerDay}
+        />
       </div>
-)}
 
-      <div className={arr?.length > 0 ? "d-none" : min?.length > 0 ? 'p-1 mb-3':  "d-none"}>
-        <h4 className='p-1 bg-secondary text-white'>
+      <div
+        className={
+          arr?.length > 0 ? "d-none" : min?.length > 0 ? "p-1 mb-3" : "d-none"
+        }
+      >
+        <h4 className="p-1 bg-secondary text-white">
           Taxistas con Viajes sin Completar desde el Ultimo Minuto +
-          <input type="number" className="mx-5" onChange={handlerInputM} value={f}/>
+          <input
+            type="number"
+            className="mx-5"
+            onChange={handlerInputM}
+            value={f}
+          />
         </h4>
 
         {
           <div className="p-3 text-center mb-3">
             {min?.map((doc) => {
-                return (
-                  <span className="border border-danger mx-2 p-2 bg-white">
-                    {doc.email.slice(0, -10)}
-                  </span>
-                );
-              })}
+              return (
+                <span className="border border-danger mx-2 p-2 bg-white">
+                  {doc.email.slice(0, -10)}
+                </span>
+              );
+            })}
           </div>
         }
       </div>
 
-
-      <div className={arr?.length > 0 ? "d-none" : h?.length > 0 ? 'p-1 mb-3':  "d-none"}>
-        <h4 className='p-1 bg-secondary text-white'>
+      <div
+        className={
+          arr?.length > 0 ? "d-none" : h?.length > 0 ? "p-1 mb-3" : "d-none"
+        }
+      >
+        <h4 className="p-1 bg-secondary text-white">
           Taxistas con Viajes sin Completar de la Ultima Hora +
-          <input type="number" className="mx-5" onChange={handlerInputH} value={hr}/>
+          <input
+            type="number"
+            className="mx-5"
+            onChange={handlerInputH}
+            value={hr}
+          />
         </h4>
-        
 
         {
           <div className="p-3 text-center mb-3">
-            {
-                h?.map((doc) => {
-                  return(
-                    <span className="border border-danger mx-2 p-2 bg-white">
-                      {doc.email.slice(0, -10)}
-                    </span>
-                  )
-                }) 
-            }
+            {h?.map((doc) => {
+              return (
+                <span className="border border-danger mx-2 p-2 bg-white">
+                  {doc.email.slice(0, -10)}
+                </span>
+              );
+            })}
           </div>
         }
-        
       </div>
 
-
-      <div className={arr?.length > 0 ? "d-none" : d?.length > 0 ? 'p-1 mb-3':  "d-none"}>
-        <h4 className='p-1 bg-secondary text-white'>
+      <div
+        className={
+          arr?.length > 0 ? "d-none" : d?.length > 0 ? "p-1 mb-3" : "d-none"
+        }
+      >
+        <h4 className="p-1 bg-secondary text-white">
           Taxistas con viajes sin Completar de las Ultimas 24 Horas
         </h4>
 
         {
           <div className="p-3 text-center mb-3">
-            {
-                d?.map((doc) => {
-                  return(
-                    <span className="border border-danger mx-2 p-2 bg-white">
-                      {doc.email.slice(0, -10)}
-                    </span>
-                  )
-                }) 
-            }
+            {d?.map((doc) => {
+              return (
+                <span className="border border-danger mx-2 p-2 bg-white">
+                  {doc.email.slice(0, -10)}
+                </span>
+              );
+            })}
           </div>
         }
-        
       </div>
       {currentUser && (
-        <div className={arr?.length > 0 ? "d-none" : 'p-1 mb-3 mt-5'}>
-          <input type="text" placeholder='Codigo de Taller:' className='form-control w-25'/>
+        <div className={arr?.length > 0 ? "d-none" : "p-1 mb-3 mt-5"}>
+          <input
+            type="text"
+            placeholder="Codigo de Taller:"
+            className="form-control w-25"
+          />
         </div>
       )}
 

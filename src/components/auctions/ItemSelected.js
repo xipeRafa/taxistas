@@ -56,7 +56,7 @@ const ItemSelected = ({
 
 
   return (
-    <div className="m-5">
+    <div className="m-5 " >
       <div
         className={
           itemState.completed
@@ -66,7 +66,7 @@ const ItemSelected = ({
       >
         {itemState.completed ? "COMPLETADO" : "SIN COMPLETAR"}
       </div>
-      <div className="card pb-0">
+      <div className="card pb-0" style={{backgroundColor:'rgb(230,230,230)'}}>
         <div
           style={{
             height: "300px",
@@ -110,14 +110,14 @@ const ItemSelected = ({
         <div className={itemState.completed ? 'd-none' : 'p-3'}>
 
           <form onSubmit={handlerSub} className='d-flex'>
-            <input  type="text" className='form-control' 
+            <input  type="text" className='form-control me-2' 
                     onChange={handlerNote} 
                     placeholder='Nota:' value={note} />
             
-            <input type="button" className={itemState.note !== undefined ?"btn btn-outline-info" : "d-none" }
+            <input type="button" className={itemState.note !== undefined ?"btn btn-info me-1 text-white" : "d-none" }
                    value='Editar' onClick={handlerEdit} />
 
-            <input type="submit" value='Guardar' className="btn btn-outline-info"/>
+            <input type="submit" value='Guardar' className="btn btn-info text-white"/>
           </form>
 
         </div>
