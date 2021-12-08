@@ -28,15 +28,22 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
       day: "numeric", // 2-digit
 }); 
 
+const handlerButton =()=>{
+    bidAuction(item.id)
+    handleState(item)
+}
 
-
+const handlerInfo =()=>{
+  handleState(item)
+  window.scrollTo(0,document.body.scrollHeight, {behavior: 'smooth'})
+}
 
   return (
     <div className="col">
         {currentUser && (
       <div className="card shadow-sm">
         <div
-          onClick={() => handleState(item)}
+          onClick={handlerInfo}
           style={{
             height: "180px",
             backgroundImage: `url(${item.imgUrl})`,
@@ -66,7 +73,7 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
                                            : acuerdo 
                                            ? "btn btn-success w-100" 
                                            : "btn btn-danger w-100"}
-                      onClick={() => bidAuction(item.id)}>
+                      onClick={handlerButton}>
 
                 {completed ? "Completado" : acuerdo ? 'Sin Completar ✓' : 'Sin Completar ✘'}
               </Button>

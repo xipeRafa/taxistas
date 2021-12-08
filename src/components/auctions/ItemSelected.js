@@ -70,7 +70,7 @@ const ItemSelected = ({
       <div className="card pb-0">
         <div
           style={{
-            height: "400px",
+            height: "300px",
             backgroundImage: `url(${itemState.imgUrl})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
@@ -101,7 +101,7 @@ const ItemSelected = ({
               {itemState.description}
             </h5>
 
-            <h5 className={itemState.completed && 'd-none'}>
+            <h5 className={itemState.note !== undefined ?"card-text" : "d-none" }>
               <span className="text-secondary">Nota: </span>{" "}
               {itemState.note}
             </h5>
