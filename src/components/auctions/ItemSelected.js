@@ -37,7 +37,6 @@ const ItemSelected = ({
 
 
   const[note, setNote]=useState()
-  console.log(itemState.note)
 
   const handlerNote =(e)=>{
     setNote(e.target.value)
