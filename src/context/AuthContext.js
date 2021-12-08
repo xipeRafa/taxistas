@@ -26,7 +26,16 @@ export const AuthProvider = ({ children }) => {
     const db = firestoreApp.collection('auctions');
 
     return db.doc(auctionId).update({
-      completed: true
+      acuerdo:true
+    });
+  };
+
+  const noteContext = (auctionId, note) => {
+
+    const db = firestoreApp.collection('auctions');
+
+    return db.doc(auctionId).update({
+      note:note
     });
   };
 
@@ -58,6 +67,7 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         bidAuction,
+        noteContext,
         endAuction,
         globalMsg,
       }}

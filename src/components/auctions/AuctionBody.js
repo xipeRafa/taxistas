@@ -224,7 +224,6 @@ export const AuctionBody = () => {
   }
 
   const[d, setD]=useState()
-  console.log(d)
 
   const handlerDay =()=>{
     const tt = DBD.filter((el) => el !== undefined)
@@ -245,7 +244,7 @@ export const AuctionBody = () => {
   const [h, setH]=useState()
 
   const[hr, setHr]=useState(1)
-console.log(hr)
+
   const handlerInputH = (e)=>{
     setHr(e.target.value)
   }
@@ -278,20 +277,7 @@ console.log(hr)
    setD([])
   }
 
-
-
- 
-                    
-
-
-                      
-
   /* ===================================== last 24 hours END ==================== */
-
-
-
-
-
 
   let arr3 = arr;
 
@@ -316,8 +302,6 @@ console.log(hr)
   if (arr.length > 0) {
     arr4 = arr3;
   }
-
-
 
 
 
@@ -409,7 +393,6 @@ console.log(hr)
                   value="nocompletados"
                   name="drone"
                   className="d-none"
-                  for="chackbox2"
                 />
                 No Completados
               </label>

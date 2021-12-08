@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useFirestore } from "../../hooks/useFirestore";
+import { AuthContext } from "../../context/AuthContext";
+
 
 const ItemSelected = ({
   itemState = {
@@ -9,6 +11,7 @@ const ItemSelected = ({
   }
 }) => {
   const { docs } = useFirestore("auctions");
+  const { noteContext } = useContext(AuthContext);
 
   let title = itemState.title;
 
@@ -31,6 +34,27 @@ const ItemSelected = ({
     month: "short", // numeric, 2-digit, narrow, long
     day: "numeric" // 2-digit
   });
+
+
+  const[note, setNote]=useState()
+  console.log(itemState.note)
+
+  const handlerNote =(e)=>{
+    setNote(e.target.value)
+  }
+
+  const handlerSub =(e)=>{
+    e.preventDefault()
+
+    noteContext(itemState.id, note)  
+    itemState.note=note
+    setNote('')
+  }
+
+  const handlerEdit =()=>{
+    setNote(itemState.note)
+  }
+
 
   return (
     <div className="m-5">
@@ -66,6 +90,9 @@ const ItemSelected = ({
               <h5>
               <span className="text-secondary">Unidad: </span> {itemState.title}
               </h5>
+              <h5>
+              <span className="text-secondary">Cliente: </span> {itemState.categorie}
+              </h5>
             <h5>
               <span className="text-secondary">Fecha: </span> {date}, {hora}
             </h5>
@@ -73,8 +100,29 @@ const ItemSelected = ({
               <span className="text-secondary">Comentarios: </span>{" "}
               {itemState.description}
             </h5>
+
+            <h5 className={itemState.completed && 'd-none'}>
+              <span className="text-secondary">Nota: </span>{" "}
+              {itemState.note}
+            </h5>
+
           </div>
         )}
+        <div className={itemState.completed ? 'd-none' : 'p-3'}>
+
+          <form onSubmit={handlerSub} className='d-flex'>
+            <input  type="text" className='form-control' 
+                    onChange={handlerNote} 
+                    placeholder='Nota:' value={note} />
+            
+            <input type="button" className={itemState.note !== undefined ?"btn btn-outline-info" : "d-none" }
+                   value='Editar' onClick={handlerEdit} />
+
+            <input type="submit" value='Guardar' className="btn btn-outline-info"/>
+          </form>
+
+        </div>
+
       </div>
       <div
         className={

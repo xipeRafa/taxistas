@@ -4,16 +4,18 @@ import { AuthContext } from "../../context/AuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
 
 export const AuctionCard = ({ item, handleState}) => {
-  const { currentUser} = useContext(AuthContext);
+  const { currentUser, bidAuction } = useContext(AuthContext);
 
   const { docs } = useFirestore("auctions");
 
   let seconds 
   let completed;
+  let acuerdo;
 
   docs.map((el) => {
     el.id === item.id && (seconds = el.duration);
     el.id === item.id && (completed = el.completed);
+    el.id === item.id && (acuerdo = el.acuerdo);
   });
 
 
@@ -60,8 +62,13 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
           <p className="card-text">{item?.description?.slice(0, 20)}...</p>
           <div className="d-flex justify-content-between align-item-center">
            
-              <Button className={completed ? "btn btn-primary w-100" : "btn btn-danger w-100"}>
-                {completed ? "Completado" : " Sin Completar"}
+              <Button className={completed ? "btn btn-primary w-100" 
+                                           : acuerdo 
+                                           ? "btn btn-success w-100" 
+                                           : "btn btn-danger w-100"}
+                      onClick={() => bidAuction(item.id)}>
+
+                {completed ? "Completado" : acuerdo ? 'Sin Completar ✓' : 'Sin Completar ✘'}
               </Button>
           
           </div>
