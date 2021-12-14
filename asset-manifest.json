@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.css": "/taller-t.git/static/css/main.645dae1b.chunk.css",
-    "main.js": "/taller-t.git/static/js/main.6003bce6.chunk.js",
-    "main.js.map": "/taller-t.git/static/js/main.6003bce6.chunk.js.map",
-    "runtime-main.js": "/taller-t.git/static/js/runtime-main.1e30ec88.js",
-    "runtime-main.js.map": "/taller-t.git/static/js/runtime-main.1e30ec88.js.map",
-    "static/css/2.54370922.chunk.css": "/taller-t.git/static/css/2.54370922.chunk.css",
-    "static/js/2.30e3e86d.chunk.js": "/taller-t.git/static/js/2.30e3e86d.chunk.js",
-    "static/js/2.30e3e86d.chunk.js.map": "/taller-t.git/static/js/2.30e3e86d.chunk.js.map",
-    "index.html": "/taller-t.git/index.html",
-    "static/css/2.54370922.chunk.css.map": "/taller-t.git/static/css/2.54370922.chunk.css.map",
-    "static/css/main.645dae1b.chunk.css.map": "/taller-t.git/static/css/main.645dae1b.chunk.css.map",
-    "static/js/2.30e3e86d.chunk.js.LICENSE.txt": "/taller-t.git/static/js/2.30e3e86d.chunk.js.LICENSE.txt"
+    "main.css": "/taxistas/static/css/main.645dae1b.chunk.css",
+    "main.js": "/taxistas/static/js/main.b3013f7a.chunk.js",
+    "main.js.map": "/taxistas/static/js/main.b3013f7a.chunk.js.map",
+    "runtime-main.js": "/taxistas/static/js/runtime-main.29112eea.js",
+    "runtime-main.js.map": "/taxistas/static/js/runtime-main.29112eea.js.map",
+    "static/css/2.f97446a8.chunk.css": "/taxistas/static/css/2.f97446a8.chunk.css",
+    "static/js/2.855e6a84.chunk.js": "/taxistas/static/js/2.855e6a84.chunk.js",
+    "static/js/2.855e6a84.chunk.js.map": "/taxistas/static/js/2.855e6a84.chunk.js.map",
+    "index.html": "/taxistas/index.html",
+    "static/css/2.f97446a8.chunk.css.map": "/taxistas/static/css/2.f97446a8.chunk.css.map",
+    "static/css/main.645dae1b.chunk.css.map": "/taxistas/static/css/main.645dae1b.chunk.css.map",
+    "static/js/2.855e6a84.chunk.js.LICENSE.txt": "/taxistas/static/js/2.855e6a84.chunk.js.LICENSE.txt",
+    "static/media/canal10.24a72002.png": "/taxistas/static/media/canal10.24a72002.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1e30ec88.js",
-    "static/css/2.54370922.chunk.css",
-    "static/js/2.30e3e86d.chunk.js",
+    "static/js/runtime-main.29112eea.js",
+    "static/css/2.f97446a8.chunk.css",
+    "static/js/2.855e6a84.chunk.js",
     "static/css/main.645dae1b.chunk.css",
-    "static/js/main.6003bce6.chunk.js"
+    "static/js/main.b3013f7a.chunk.js"
   ]
 }
