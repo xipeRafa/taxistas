@@ -354,7 +354,7 @@ export const AuctionBody = () => {
                   arr.length > 0 ? "w-100 form-control mt-2" : "d-none"
                 }
                 style={{ width: "0" }}
-                placeholder="Filtrar por Correo"
+                placeholder="Buscar por KL"
               />
             </form>
           </div>
@@ -517,7 +517,7 @@ export const AuctionBody = () => {
           arr?.length > 0 ? "d-none" : d?.length > 0 ? "p-1 mb-3" : "d-none"
         }
       >
-        <h4 className="p-1 bg-secondary text-white">
+        <h4 className="p-2 bg-secondary text-white">
           Taxistas con viajes sin Completar de las Ultimas 24 Horas
         </h4>
 
