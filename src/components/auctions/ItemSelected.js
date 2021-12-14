@@ -107,6 +107,8 @@ const ItemSelected = ({
 
           </div>
         )}
+
+{title !== "Inicia sesión" && (
         <div className={itemState.completed ? 'd-none' : 'p-3'}>
 
           <form onSubmit={handlerSub} className='d-flex'>
@@ -121,7 +123,8 @@ const ItemSelected = ({
           </form>
 
         </div>
-
+)}
+        
       </div>
       <div
         className={

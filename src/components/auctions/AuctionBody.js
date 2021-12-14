@@ -432,7 +432,8 @@ export const AuctionBody = () => {
       )}
 
       {/* =================================================================================================================================================================================================================================== */}
-
+      {currentUser && (
+<div>
       <div className="d-flex flex-row justify-content-evenly p-4">
         <input
           type="button"
@@ -533,13 +534,14 @@ export const AuctionBody = () => {
           </div>
         }
       </div>
-      {currentUser && (
+   
         <div className={arr?.length > 0 ? "d-none" : "p-1 mb-3 mt-5"}>
           <input
             type="text"
             placeholder="Codigo de Taller:"
             className="form-control w-25"
           />
+        </div>
         </div>
       )}
 
