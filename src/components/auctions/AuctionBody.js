@@ -8,6 +8,7 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ItemSelected from "./ItemSelected";
 import Filters from "./Filters";
+import {Oxxo} from './Oxxo'
 
 import "./picker.css";
 import es from "date-fns/locale/es";
@@ -30,8 +31,8 @@ export const AuctionBody = () => {
   let DBD;
   if (
     admin === "superadmin@gmail.com" ||
-    "superadmin2@gmail.com" ||
-    "superadmin3@gmail.com"
+    admin === "superadmin2@gmail.com" ||
+    admin === "superadmin3@gmail.com"
   ) {
     DBD = DB.sort((o1, o2) =>
       o1.completed === o2.completed ? 0 : o2.completed ? -1 : 1
@@ -291,11 +292,12 @@ export const AuctionBody = () => {
     }
   }
 
-  let arr4 = DBD;
+  let arr4 = [];
 
   if (arr.length > 0) {
     arr4 = arr3;
   }
+
 
   return (
     <div className="container-fluid">
@@ -534,21 +536,13 @@ export const AuctionBody = () => {
           </div>
         }
       </div>
-   
-        <div className={arr?.length > 0 ? "d-none" : "p-1 mb-3 mt-5"}>
-          <input
-            type="text"
-            placeholder="Codigo de Taller:"
-            className="form-control w-25"
-          />
-        </div>
         </div>
       )}
 
       {DB && (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
           {currentUser && (
-            <div className={arr.length > 0 && "d-none"}>
+            <div className={arr.length > 0 ? "d-none" : "d-none"}>
               <Filters />
             </div>
           )}
@@ -565,6 +559,12 @@ export const AuctionBody = () => {
             })}
         </div>
       )}
+
+      <h2 className="mt-2">Pedidos de oxxo</h2>
+
+     
+              <Oxxo />
+
 
       <ItemSelected itemState={itemState} />
     </div>
