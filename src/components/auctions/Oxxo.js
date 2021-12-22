@@ -22,7 +22,9 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
 }); 
 
   return (
-    <div className="col border">
+    <div  className="col border mb-5 p-3" 
+          style={{height:'700px', overflow:'hidden', overflowY: 'scroll'}}>
+
       {docs.map((item) => (
       <div className="card shadow-sm mb-2">
        
