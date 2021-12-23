@@ -311,24 +311,21 @@ export const AuctionBody = () => {
       </div>
       {admin && (
         <div className="row bg-secondary pt-4 pb-3">
-          <div className="text-white bg-primary mb-3 p-1">
+          <div className="text-white bg-primary mb-3 p-1 blue">
             <span style={{ marginLeft: "20px" }}>
-              <span className="p-1">{l}</span> viajes el dia: {today2} de todos
-              los Taxistas
+              <span className="p-1">{l}</span> Viajes el Dia: {today2} 
             </span>
-            <span
-              style={{ marginLeft: "50px" }}
-              className={n?.length > 0 ? "" : "d-none"}
-            >
+
+            <span className={n?.length > 0 ? "mx-5" : "d-none"} >
               <span className="bg-danger p-1">
                 {n?.filter((el) => el.completed === false).length}
               </span>{" "}
-              viajes Sin Completar de {mail}
+              Viajes Sin Completar de KL {mail}
             </span>
           </div>
           <div className="col-1"></div>
           <div
-            className={n?.length > 0 ? "d-none" : "col-3 text-center mb-4 me-5"}
+            className={n?.length > 0 ? "d-none" : "col-sm-3 text-center mb-4 me-5"}
           >
             <DatePicker
               selected={fecha}
@@ -340,13 +337,13 @@ export const AuctionBody = () => {
             />
           </div>
           <div
-            className={arr?.length > 0 ? "col-1 fs-2 row-back" : "d-none"}
+            className={arr?.length > 0 ? "col-md-1 fs-2 row-back" : "d-none"}
             onClick={() => location.reload()}
           >
             🔙
           </div>
 
-          <div className="col-3 text-center">
+          <div className="col-md-3 text-center">
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -361,20 +358,20 @@ export const AuctionBody = () => {
             </form>
           </div>
           <div className="col-1"></div>
-          <div className={arr?.length > 0 ? "col-3 mt-0 fr" : "d-none"}>
+          <div className={arr?.length > 0 ? "col-md-3 mt-2" : "d-none"}>
             <div
-              className={n?.length > 0 ? "w-50" : "d-none"}
+              className={n?.length > 0 ? "w-75 fr" : "d-none"}
               onChange={(e) => handlerRadio(e.target.value)}
             >
               <input
                 type="button"
-                className="text-white btn btn-secondary"
+                className="btn text-white btn-outline-dark"
                 name="drone"
                 value="Todos"
                 onClick={() => setArrRadio([])}
               />
 
-              <label className="btn text-white btn-secondary">
+              <label className="btn text-white btn-outline-dark my-2">
                 <input
                   type="radio"
                   value="completados"
@@ -383,20 +380,20 @@ export const AuctionBody = () => {
                 />
                 Completados
               </label>
-              <label className="btn text-white btn-secondary">
+              <label className="btn text-white btn-outline-dark">
                 <input
                   type="radio"
                   value="nocompletados"
                   name="drone"
                   className="d-none"
                 />
-                No Completados
+                Incompletos
               </label>
             </div>
           </div>
-          <div className={n?.length > 0 ? "col-3" : "d-none"}>
-            <div className="w-75 mt-0">
-              <label className="text-white mb-3">
+          <div className={n?.length > 0 ? "col-md-3 mt-2" : "d-none"}>
+            <div className="w-75 mt-0 " style={{ marginLeft: "12.5%" }}>
+              <label className="text-white mb-4 mt-1">
                 <input
                   type="checkbox"
                   className="m-1"
@@ -407,7 +404,7 @@ export const AuctionBody = () => {
                 OXXO
               </label>
               <br />
-              <label className="text-white mb-3">
+              <label className="text-white mb-4">
                 <input
                   type="checkbox"
                   className="m-1"
@@ -421,7 +418,7 @@ export const AuctionBody = () => {
               <label className="text-white">
                 <input
                   type="checkbox"
-                  className="m-1"
+                  className="m-1 mb-4"
                   value="pago en efectivo"
                   onChange={(e) => handleEfectivo(e)}
                   checked={pagoEnEfectivo}
@@ -446,7 +443,7 @@ export const AuctionBody = () => {
 
         <input
           type="button"
-          className={arr?.length > 0 ? "d-none" : "btn btn-primary"}
+          className={arr?.length > 0 ? "d-none" : "btn btn-primary mx-1"}
           value="Ultima Hora"
           onClick={handlerHour}
         />
@@ -454,7 +451,7 @@ export const AuctionBody = () => {
         <input
           type="button"
           className={arr?.length > 0 ? "d-none" : "btn btn-primary"}
-          value="Ultimas 24 Horas"
+          value="Ultimas 24 Hrs"
           onClick={handlerDay}
         />
       </div>
@@ -540,7 +537,7 @@ export const AuctionBody = () => {
       )}
 
       {DB && (
-        <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
+        <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 py-4 px-5 g-3 border mt-1 ">
           {currentUser && (
             <div className={arr.length > 0 ? "d-none" : "d-none"}>
               <Filters />
@@ -560,7 +557,7 @@ export const AuctionBody = () => {
         </div>
       )}
 
-      <h2 className="mt-2">Pedidos de oxxo</h2>
+      <h2 className="mt-2 px-3 mx-1">Pedidos de oxxo</h2>
 
      
               <Oxxo />

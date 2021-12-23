@@ -11,7 +11,7 @@ export const NavComp = () => {
     <nav className="container-fluid navbar navbar-light border">
       <div className="container-fluid">
         <div className="navbar-brand">
-          <img src={logoImg} alt="logo" height="50" /> ADMINISTRACIÓN
+          <img src={logoImg} alt="logo" height="50" /> ADMIN
         </div>
         <div className="d-flex">
           <div className="col">

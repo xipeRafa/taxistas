@@ -45,7 +45,7 @@ const handlerInfo =()=>{
         <div
           onClick={handlerInfo}
           style={{
-            height: "180px",
+            height: "140px",
             backgroundImage: `url(${item.imgUrl})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
@@ -60,7 +60,7 @@ const handlerInfo =()=>{
           </p>
           <div className="d-flex jsutify-content-between align-item-center">
             <h5>
-              <span className="text-secondary">cliente</span> {item.categorie}
+              <span className="text-secondary">Cliente</span> {item.categorie}
             </h5>
           </div>
           <div>
