@@ -112,19 +112,19 @@ const ItemSelected = ({
         <div className={itemState.completed ? 'd-none' : 'p-3'}>
 
           <form onSubmit={handlerSub} className='d-flex'>
-            <input  type="text" 
-                    className='form-control me-2' 
+            <input  type="text" className='form-control me-2' 
                     onChange={handlerNote} 
                     placeholder='Nota:' value={note} />
             
-            <input  type="button" 
-                    className={note?.length < 1 ? "btn btn-info text-white" : "d-none"}
-                    value={itemState.note !== undefined ? 'Editar' : 'Crear Nota'} onClick={handlerEdit} />
+            <input type="button" 
+                   className={itemState.note !== undefined ?"btn btn-info me-1 text-white" : "d-none" }
+                   value='Editar' 
+                   onClick={handlerEdit} />
 
             <input  type="submit" 
-                    value={itemState.note !== undefined ? 'Guardar' : 'Crear Nota'} 
-                    className={note?.length > 1 ? "btn btn-info text-white" : "d-none"} 
-                    />
+                    value={itemState.note !== undefined ? "Guardar" : 'Escribir Nota' }
+                    className="btn btn-info text-white"
+                    disabled={note?.length > 1 ? false : true}/>
           </form>
 
         </div>
