@@ -8,7 +8,6 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ItemSelected from "./ItemSelected";
 import Filters from "./Filters";
-import {Oxxo} from './Oxxo'
 
 import "./picker.css";
 import es from "date-fns/locale/es";
@@ -325,7 +324,7 @@ export const AuctionBody = () => {
           </div>
           <div className="col-1"></div>
           <div
-            className={n?.length > 0 ? "d-none" : "col-sm-3 text-center mb-4 me-5"}
+            className={n?.length > 0 ? "d-none" : "col-md-3 text-center mb-4 me-5"}
           >
             <DatePicker
               selected={fecha}
@@ -556,11 +555,6 @@ export const AuctionBody = () => {
             })}
         </div>
       )}
-
-      <h2 className="mt-2 px-3 mx-1">Pedidos de oxxo</h2>
-
-     
-              <Oxxo />
 
 
       <ItemSelected itemState={itemState} />
