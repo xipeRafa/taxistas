@@ -56,7 +56,12 @@ const handlerInfo =()=>{
        
         <div className="card-body p-4">
           <p className="h5">
-            <span className="text-secondary">KL </span> {item.email?.slice(0, -10)}
+            <span className="text-secondary">KL </span> {item.email?.slice(0, -10)}{' '}
+            {item.latitude !== 'no-gps' ?
+                 <a style={{textDecoration:'none'}} 
+                 href={`https://www.google.com/maps/@${item.latitude},${item.longitude},15z`}
+                 target='_blank'>Ubicacion GPS</a> : ''
+            }
           </p>
           <div className="d-flex jsutify-content-between align-item-center">
             <h5>
