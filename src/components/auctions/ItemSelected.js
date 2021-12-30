@@ -56,16 +56,12 @@ const ItemSelected = ({
 
 
   return (
-    <div className="m-5 " >
-      <div
-        className={
-          itemState.completed
-            ? "bg-primary text-white p-2 text-center"
-            : "bg-danger text-white p-2 text-center"
-        }
-      >
+    <div className="m-5">
+
+      <div className="bg-secondary text-white p-2 text-center">
         {itemState.completed ? "COMPLETADO" : "SIN COMPLETAR"}
       </div>
+
       <div className="card pb-0" style={{backgroundColor:'rgb(230,230,230)'}}>
         <div
           style={{
@@ -131,15 +127,7 @@ const ItemSelected = ({
 )}
         
       </div>
-      <div
-        className={
-          itemState.completed
-            ? "bg-primary text-white p-2 text-center"
-            : "bg-danger text-white p-2 text-center"
-        }
-      >
-        {itemState.completed ? "COMPLETADO" : "SIN COMPLETAR"}
-      </div>
+    
     </div>
   );
 };

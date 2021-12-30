@@ -138,6 +138,7 @@ export const AuctionBody = () => {
   const [oxxo, setoxxo] = useState(true);
   const [otro, setotro] = useState(true);
   const [pagoEnEfectivo, setPagoEnEfectivo] = useState(true);
+  const [taller, setTaller] = useState(true);
 
   const handleoxxo = (e) => {
     setoxxo(!oxxo);
@@ -160,6 +161,13 @@ export const AuctionBody = () => {
       : removeItemFromArr(arrFilter, e.target.value);
   };
 
+  const handleTaller = (e) => {
+    setTaller(!taller);
+    taller
+      ? setArrFilter([...arrFilter, e.target.value])
+      : removeItemFromArr(arrFilter, e.target.value);
+  };
+
   const [arrFilter, setArrFilter] = useState([]);
 
   function removeItemFromArr(arrFilter, item) {
@@ -175,7 +183,7 @@ export const AuctionBody = () => {
       db = element;
     }
     setArrRadio(db);
-  }, [arrFilter, oxxo, otro, pagoEnEfectivo]);
+  }, [arrFilter, oxxo, otro, pagoEnEfectivo, taller]);
 
   /* ===================================== Clientes Filter END ==================== */
 
@@ -392,7 +400,7 @@ export const AuctionBody = () => {
           </div>
           <div className={n?.length > 0 ? "col-md-3 mt-2" : "d-none"}>
             <div className="w-75 mt-0 " style={{ marginLeft: "12.5%" }}>
-              <label className="text-white mb-4 mt-1">
+              <label className="text-white mb-2 mt-1">
                 <input
                   type="checkbox"
                   className="m-1"
@@ -403,7 +411,7 @@ export const AuctionBody = () => {
                 OXXO
               </label>
               <br />
-              <label className="text-white mb-4">
+              <label className="text-white mb-2">
                 <input
                   type="checkbox"
                   className="m-1"
@@ -417,12 +425,23 @@ export const AuctionBody = () => {
               <label className="text-white">
                 <input
                   type="checkbox"
-                  className="m-1 mb-4"
+                  className="m-1 mb-3"
                   value="pago en efectivo"
                   onChange={(e) => handleEfectivo(e)}
                   checked={pagoEnEfectivo}
                 />
                 Pagos en Efectivo
+              </label>
+              <br />
+              <label className="text-white">
+                <input
+                  type="checkbox"
+                  className="m-1 mb-4"
+                  value="taller"
+                  onChange={(e) => handleTaller(e)}
+                  checked={taller}
+                />
+                Taller
               </label>
             </div>
           </div>
