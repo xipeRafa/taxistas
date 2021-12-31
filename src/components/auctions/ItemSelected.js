@@ -91,6 +91,9 @@ const ItemSelected = ({
             <h5>
               <span className="text-secondary">Fecha: </span> {date}, {hora}
             </h5>
+            <h5>
+              <span className="text-secondary">Tienda Oxxo: </span> {itemState.tiendaOxxo}
+            </h5>
             <h5 className="card-text">
               <span className="text-secondary">Comentarios: </span>{" "}
               {itemState.description}

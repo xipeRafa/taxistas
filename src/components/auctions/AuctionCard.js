@@ -68,10 +68,17 @@ const handlerInfo =()=>{
               <span className="text-secondary">Cliente</span> {item.categorie}
             </h5>
           </div>
+          <div className="d-flex jsutify-content-between align-item-center">
+            <h5>
+              <span className="text-secondary">Tienda:</span> {item.tiendaOxxo}
+            </h5>
+          </div>
           <div>
             <p>{date}, {hora.slice(0, -3)}</p>
           </div>
           <p className="card-text">{item?.description?.slice(0, 20)}...</p>
+
+
           <div className="d-flex justify-content-between align-item-center">
            
               <Button className={completed ? "btn btn-primary w-100" 
