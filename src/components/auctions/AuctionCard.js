@@ -59,7 +59,7 @@ const handlerInfo =()=>{
             <span className="text-secondary">KL </span> {item.email?.slice(0, -10)}{' '}
             {item.latitude !== 'no-gps' ?
                  <a style={{textDecoration:'none'}} 
-                 href={`https://www.google.com/maps/@${item.latitude},${item.longitude},15z`}
+                 href={`https://www.google.com/maps/@${item.latitude},${item.longitude},20z`}
                  target='_blank'>Ubicacion GPS</a> : ''
             }
           </p>
