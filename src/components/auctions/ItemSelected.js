@@ -1,5 +1,4 @@
-import { useState, useContext, useEffect } from "react";
-import { useFirestore } from "../../hooks/useFirestore";
+import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 
@@ -10,19 +9,12 @@ const ItemSelected = ({
       "https://image.shutterstock.com/image-photo/indifferent-puzzled-female-shruggs-shoulders-600w-1164353026.jpg"
   }
 }) => {
-  const { docs } = useFirestore("auctions");
   const { noteContext } = useContext(AuthContext);
 
   let title = itemState.title;
 
-  let email = "";
-  let seconds;
-
-  docs.map((el) => {
-    el.id === itemState.id && (email = el.email);
-
-    el.id === itemState.id && (seconds = el.duration);
-  });
+  let email = itemState.email;
+  let seconds = itemState.duration;
 
   const hora = new Date(seconds).toLocaleTimeString(
     "es-CL"

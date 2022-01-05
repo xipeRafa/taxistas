@@ -1,23 +1,14 @@
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { AuthContext } from "../../context/AuthContext";
-import { useFirestore } from "../../hooks/useFirestore";
+
 
 export const AuctionCard = ({ item, handleState}) => {
   const { currentUser, bidAuction } = useContext(AuthContext);
 
-  const { docs } = useFirestore("auctions");
-
-  let seconds 
-  let completed;
-  let acuerdo;
-
-  docs.map((el) => {
-    el.id === item.id && (seconds = el.duration);
-    el.id === item.id && (completed = el.completed);
-    el.id === item.id && (acuerdo = el.acuerdo);
-  });
-
+  let seconds = item.duration
+  let completed = item.completed
+  let acuerdo = item.acuerdo;
 
 const hora = new Date(seconds).toLocaleTimeString("es-CL")
 
