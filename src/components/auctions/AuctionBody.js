@@ -133,7 +133,7 @@ export const AuctionBody = () => {
   /* ===================================== Clientes Filter ==================== */
 
   let db = n
-    ?.sort((o1, o2) => o1.duration - o2.duration) //last to near
+    ?.sort((o1, o2) => o2.duration - o1.duration) //last to near
     .sort((o1, o2) =>
       o1.completed === o2.completed ? 0 : o2.completed ? -1 : 1
     );
