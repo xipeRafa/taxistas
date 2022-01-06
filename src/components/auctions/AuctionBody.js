@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { AuctionCard } from "./AuctionCard";
-import { ProgressBar } from "./ProgressBar";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ItemSelected from "./ItemSelected";
@@ -15,7 +14,6 @@ import es from "date-fns/locale/es";
 registerLocale("es", es);
 
 export const AuctionBody = () => {
-  const [auction, setAuction] = useState(null);
   const { currentUser } = useContext(AuthContext);
 
   
@@ -311,7 +309,6 @@ export const AuctionBody = () => {
 
   return (
     <div className="container-fluid">
-      {auction && <ProgressBar auction={auction} setAuction={setAuction} />}
 
       
       {admin && (
