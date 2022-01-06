@@ -59,11 +59,12 @@ const handlerInfo =()=>{
               <span className="text-secondary">Cliente</span> {item.categorie}
             </h5>
           </div>
+          {item.categorie === 'oxxo' &&
           <div className="d-flex jsutify-content-between align-item-center">
             <h5>
               <span className="text-secondary">Tienda:</span> {item.tiendaOxxo}
             </h5>
-          </div>
+          </div>}
           <div>
             <p>{date}, {hora.slice(0, -3)}</p>
           </div>
