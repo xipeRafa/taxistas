@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -19,9 +19,12 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
       day: "numeric", // 2-digit
 }); 
 
+const[bool, setBool]=useState(false)
+
 const handlerButton =()=>{
     bidAuction(item.id)
     handleState(item)
+    setBool(true)
 }
 
 const handlerInfo =()=>{
@@ -74,12 +77,12 @@ const handlerInfo =()=>{
           <div className="d-flex justify-content-between align-item-center">
            
               <Button className={completed ? "btn btn-primary w-100" 
-                                           : acuerdo 
+                                           : acuerdo || bool
                                            ? "btn btn-success w-100" 
                                            : "btn btn-danger w-100"}
                       onClick={handlerButton}>
 
-                {completed ? "Completado" : acuerdo ? 'Sin Completar ✓' : 'Sin Completar ✘'}
+                {completed ? "Completado" : acuerdo || bool ? 'Sin Completar ✓' : 'Sin Completar ✘'}
               </Button>
           
           </div>
