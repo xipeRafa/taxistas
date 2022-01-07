@@ -89,14 +89,12 @@ export const AuctionBody = () => {
     setArrRadio([]);
   };
 
-  const [arr2, setArr2] = useState([]);
 
   const [n, setN] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setArr2(mail);
 
     let sss = arr
       .filter((el) => el !== undefined)
@@ -313,7 +311,7 @@ export const AuctionBody = () => {
       
       {admin && (
         <div className="row bg-secondary pt-4 pb-3">
-          <div className="text-white bg-primary mb-3 p-1 blue">
+          <div className={arr?.length > 0 ? "text-white bg-primary mb-3 p-1 blue" : 'd-none' }  >
             <span style={{ marginLeft: "20px" }}>
               <span className="p-1">{l}</span> Viajes el Dia: {today2} 
             </span>
@@ -327,12 +325,12 @@ export const AuctionBody = () => {
           </div>
           <div className="col-1"></div>
           <div
-            className={n?.length > 0 ? "d-none" : "col-md-3 text-center mb-4 me-5"}
+            className={n?.length > 0 ? "d-none" : "col-md-3 text-center mb-2 me-5"}
           >
             <DatePicker
               selected={fecha}
               onChange={onDate}
-              onFocus={dateFocus}
+              
               locale="es"
               className="pickers mb-3 form-control mt-2 w-100 bg-secondary"
               dateFormat="dd 'de' MMMM 'de' yyyy"
@@ -449,21 +447,21 @@ export const AuctionBody = () => {
       <div className="d-flex flex-row justify-content-evenly p-4">
         <input
           type="button"
-          className={arr?.length > 0 ? "d-none" : "btn btn-primary"}
+          className={arr?.length > 0 ? "d-none" : "btn btn-outline-primary"}
           value="Ultimo Minuto"
           onClick={handlerMinute}
         />
 
         <input
           type="button"
-          className={arr?.length > 0 ? "d-none" : "btn btn-primary mx-1"}
+          className={arr?.length > 0 ? "d-none" : "btn btn-outline-primary mx-1"}
           value="Ultima Hora"
           onClick={handlerHour}
         />
 
         <input
           type="button"
-          className={arr?.length > 0 ? "d-none" : "btn btn-primary"}
+          className={arr?.length > 0 ? "d-none" : "btn btn-outline-primary"}
           value="Ultimas 24 Hrs"
           onClick={handlerDay}
         />
@@ -474,7 +472,7 @@ export const AuctionBody = () => {
           arr?.length > 0 ? "d-none" : min?.length > 0 ? "p-1 mb-3" : "d-none"
         }
       >
-        <h4 className="p-1 bg-secondary text-white">
+        <h5 className="p-1 bg-secondary text-white">
           Taxistas con Viajes sin Completar desde el Ultimo Minuto +
           <input
             type="number"
@@ -482,7 +480,7 @@ export const AuctionBody = () => {
             onChange={handlerInputM}
             value={f}
           />
-        </h4>
+        </h5>
 
         {
           <div className="p-3 text-center mb-3">
@@ -502,7 +500,7 @@ export const AuctionBody = () => {
           arr?.length > 0 ? "d-none" : h?.length > 0 ? "p-1 mb-3" : "d-none"
         }
       >
-        <h4 className="p-1 bg-secondary text-white">
+        <h5 className="p-1 bg-secondary text-white">
           Taxistas con Viajes sin Completar de la Ultima Hora +
           <input
             type="number"
@@ -510,7 +508,7 @@ export const AuctionBody = () => {
             onChange={handlerInputH}
             value={hr}
           />
-        </h4>
+        </h5>
 
         {
           <div className="p-3 text-center mb-3">
@@ -530,9 +528,9 @@ export const AuctionBody = () => {
           arr?.length > 0 ? "d-none" : d?.length > 0 ? "p-1 mb-3" : "d-none"
         }
       >
-        <h4 className="p-2 bg-secondary text-white">
+        <h5 className="p-2 bg-secondary text-white">
           Taxistas con viajes sin Completar de las Ultimas 24 Horas
-        </h4>
+        </h5>
 
         {
           <div className="p-3 text-center mb-3">
