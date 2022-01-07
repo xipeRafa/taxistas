@@ -68,6 +68,12 @@ const handlerInfo =()=>{
               <span className="text-secondary">Tienda:</span> {item.tiendaOxxo}
             </h5>
           </div>}
+          {item.atendio !== '' &&
+          <div className="d-flex jsutify-content-between align-item-center">
+            <h5>
+              <span className="text-secondary">Atendio:</span> {item.atendio?.slice(0, -10)}
+            </h5>
+          </div>}
           <div>
             <p>{date}, {hora.slice(0, -3)}</p>
           </div>
