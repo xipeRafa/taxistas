@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/taxistas/static/css/main.dddbae8c.chunk.css",
-    "main.js": "/taxistas/static/js/main.130a052a.chunk.js",
-    "main.js.map": "/taxistas/static/js/main.130a052a.chunk.js.map",
+    "main.js": "/taxistas/static/js/main.38b4e4ca.chunk.js",
+    "main.js.map": "/taxistas/static/js/main.38b4e4ca.chunk.js.map",
     "runtime-main.js": "/taxistas/static/js/runtime-main.29112eea.js",
     "runtime-main.js.map": "/taxistas/static/js/runtime-main.29112eea.js.map",
     "static/css/2.f97446a8.chunk.css": "/taxistas/static/css/2.f97446a8.chunk.css",
-    "static/js/2.3c0e0628.chunk.js": "/taxistas/static/js/2.3c0e0628.chunk.js",
-    "static/js/2.3c0e0628.chunk.js.map": "/taxistas/static/js/2.3c0e0628.chunk.js.map",
+    "static/js/2.5d1aeb22.chunk.js": "/taxistas/static/js/2.5d1aeb22.chunk.js",
+    "static/js/2.5d1aeb22.chunk.js.map": "/taxistas/static/js/2.5d1aeb22.chunk.js.map",
     "index.html": "/taxistas/index.html",
     "static/css/2.f97446a8.chunk.css.map": "/taxistas/static/css/2.f97446a8.chunk.css.map",
     "static/css/main.dddbae8c.chunk.css.map": "/taxistas/static/css/main.dddbae8c.chunk.css.map",
-    "static/js/2.3c0e0628.chunk.js.LICENSE.txt": "/taxistas/static/js/2.3c0e0628.chunk.js.LICENSE.txt",
+    "static/js/2.5d1aeb22.chunk.js.LICENSE.txt": "/taxistas/static/js/2.5d1aeb22.chunk.js.LICENSE.txt",
     "static/media/canal10.24a72002.png": "/taxistas/static/media/canal10.24a72002.png"
   },
   "entrypoints": [
     "static/js/runtime-main.29112eea.js",
     "static/css/2.f97446a8.chunk.css",
-    "static/js/2.3c0e0628.chunk.js",
+    "static/js/2.5d1aeb22.chunk.js",
     "static/css/main.dddbae8c.chunk.css",
-    "static/js/main.130a052a.chunk.js"
+    "static/js/main.38b4e4ca.chunk.js"
   ]
 }
