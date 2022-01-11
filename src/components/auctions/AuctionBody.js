@@ -16,9 +16,22 @@ registerLocale("es", es);
 export const AuctionBody = () => {
   const { currentUser } = useContext(AuthContext);
 
-  
+/* let days = []
+
+for (let index = 0; index < 40; index++) {
+  days.push(1641798000000+(86400000*index))
+}
+
+let manana = days.find(el => el > Date.now())
+let Now = manana - 86400000
+let auctions = Now.toString() */
+
+/*   const[auc, setAuc]=useState('1641884400000')
+  console.log(auc)  */
+
  const { docs } = useFirestore('auctions');
  const DB = docs
+
 
   const [itemState, setItemState] = useState();
 
@@ -42,19 +55,19 @@ export const AuctionBody = () => {
   }
 
   /* ===================================== filter Date ==================== */
-  const dateFocus = () => {
-    setArr([]);
-  };
 
   const [today2, setToday2] = useState();
+  
 
   const [fecha, setFecha] = useState();
+
   const [arr, setArr] = useState([]);
 
   let l = arr.filter((el) => el).length;
 
   const onDate = (fecha) => {
     setFecha(fecha);
+    /* setAuc(fecha?.getTime().toString()) */ //descomentar
 
     let today = fecha?.getTime();
     let tomorrow = today + 86400000;
@@ -68,14 +81,15 @@ export const AuctionBody = () => {
 
     setToday2(today2);
 
-    let ss = DB;
+    let ss = DBD;
+    
 
-    let a = ss.map((el, i) => {
-      if (el.duration > today && el.duration < tomorrow) {
+     let a = ss.map((el, i) => {
+      if (el.duration > today && el.duration < tomorrow) { // Comentar esto
         return el;
       }
-    });
-    setArr(a);
+    }); 
+    setArr(a); /* escribir ss */
   };
 
   /* ===================================== filter Date END==================== */

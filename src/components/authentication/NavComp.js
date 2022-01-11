@@ -8,20 +8,20 @@ export const NavComp = () => {
   const { currentUser, logout } = useContext(AuthContext);
 
   return (
-    <nav className="container-fluid navbar navbar-light border">
+    <nav className="container-fluid navbar">
       <div className="container-fluid">
         <div className="navbar-brand">
-          <img src={logoImg} alt="logo" height="50" /> ADMIN
+          <img src={logoImg} alt="logo" height="26" />  
         </div>
         <div className="d-flex">
           <div className="col">
             {currentUser ? (
               <>
-                <div className="btn btn-success mx-2 disabled">
-                  {currentUser.email}
+                <div className="btn text-secondary">
+                  {currentUser.email.slice(0, -10)}
                 </div>
-                <div onClick={() => logout()} className="btn btn-outline-secondary mx-2">
-                  SALIR
+                <div onClick={() => logout()} className="btn text-secondary">
+                  salir
                 </div>
               </>
             ) : (

@@ -5,6 +5,16 @@ export const AuthContext = createContext();
 
 
 export const AuthProvider = ({ children }) => {
+ /*  let days = []
+
+  for (let index = 0; index < 40; index++) {
+    days.push(1641798000000+(86400000*index))
+  }
+
+  let manana = days.find(el => el > Date.now())
+  let Now = manana - 86400000
+  let auctions = Now.toString() */
+
   const [currentUser, setCurrentUser] = useState(null);
 
   const register = (email, password) => {
