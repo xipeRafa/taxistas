@@ -5,15 +5,8 @@ export const AuthContext = createContext();
 
 
 export const AuthProvider = ({ children }) => {
- /*  let days = []
 
-  for (let index = 0; index < 40; index++) {
-    days.push(1641798000000+(86400000*index))
-  }
-
-  let manana = days.find(el => el > Date.now())
-  let Now = manana - 86400000
-  let auctions = Now.toString() */
+  let auctions = Date.parse(new Date().toDateString())+'si'
 
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -31,7 +24,7 @@ export const AuthProvider = ({ children }) => {
 
   const bidAuction = (auctionId) => {
 
-    const db = firestoreApp.collection('auctions');
+    const db = firestoreApp.collection(auctions);
 
     return db.doc(auctionId).update({
       acuerdo:true
@@ -40,7 +33,7 @@ export const AuthProvider = ({ children }) => {
 
   const noteContext = (auctionId, note) => {
 
-    const db = firestoreApp.collection('auctions');
+    const db = firestoreApp.collection(auctions);
 
     return db.doc(auctionId).update({
       note:note

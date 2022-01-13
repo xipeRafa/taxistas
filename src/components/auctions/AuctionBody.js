@@ -16,21 +16,10 @@ registerLocale("es", es);
 export const AuctionBody = () => {
   const { currentUser } = useContext(AuthContext);
 
-/* let days = []
+  let auctions = Date.parse(new Date().toDateString())+'si'
 
-for (let index = 0; index < 40; index++) {
-  days.push(1641798000000+(86400000*index))
-}
-
-let manana = days.find(el => el > Date.now())
-let Now = manana - 86400000
-let auctions = Now.toString() */
-
-/*   const[auc, setAuc]=useState('1641884400000')
-  console.log(auc)  */
-
- const { docs } = useFirestore('auctions');
- const DB = docs
+  const { docs } = useFirestore(auctions);
+  const DB = docs
 
 
   const [itemState, setItemState] = useState();
@@ -67,7 +56,6 @@ let auctions = Now.toString() */
 
   const onDate = (fecha) => {
     setFecha(fecha);
-    /* setAuc(fecha?.getTime().toString()) */ //descomentar
 
     let today = fecha?.getTime();
     let tomorrow = today + 86400000;
@@ -83,13 +71,12 @@ let auctions = Now.toString() */
 
     let ss = DBD;
     
-
      let a = ss.map((el, i) => {
       if (el.duration > today && el.duration < tomorrow) { // Comentar esto
         return el;
       }
     }); 
-    setArr(a); /* escribir ss */
+    setArr(a);
   };
 
   /* ===================================== filter Date END==================== */
